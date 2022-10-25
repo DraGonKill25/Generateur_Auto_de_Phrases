@@ -5,6 +5,7 @@
 #include <time.h>
 #include <assert.h>
 #include <string.h>
+#include "dico_node.h"
 
 #include "helper.h"
 
@@ -49,14 +50,14 @@ void find_nom (Nnom *tree ,char* word)
 {
 	//condition d'arret: lorsque qu'on a plus de fils et par consequent que end = 0;
 	//on peut refaire un random modulo 2 pour avoir 0 ou 1 pour savoir si on continu ou on s'arrete la pour le mot
-	if (*tree == NULL)
+	if (tree == NULL)
 	{
 		return;
 	}
 
 	if (tree->nom->end && tree->nbchildren != 0)
 	{
-		if (random()%2)
+		if (rand()%2)
 		{
 			mystrcat(word, tree->nom->lettre);
 			return;
@@ -67,7 +68,7 @@ void find_nom (Nnom *tree ,char* word)
 	mystrcat(word, tree->nom->lettre);
 
 	//creation d'un random modulo nbchildren
-	int r = random() % tree->nbchildren;
+	int r = rand() % tree->nbchildren;
 	
 	//on lance la recursion sur l'enfant choisi au hassard
 	if (tree->nbchildren != 0)
@@ -82,14 +83,14 @@ void find_vb (Nnom *tree ,char* word)
 {
 	//condition d'arret: lorsque qu'on a plus de fils et par consequent que end = 0;
 	//on peut refaire un random modulo 2 pour avoir 0 ou 1 pour savoir si on continu ou on s'arrete la pour le mot
-	if (*tree == NULL)
+	if (tree == NULL)
 	{
 		return;
 	}
 
-	if (tree->vb->end && tree->nbchildren != 0)
+	if (tree->Vb->end && tree->nbchildren != 0)
 	{
-		if (random()%2)
+		if (rand()%2)
 		{
 			mystrcat(word, tree->vb->lettre);
 			return;
@@ -97,7 +98,7 @@ void find_vb (Nnom *tree ,char* word)
 	}
 
 	//creation d'un random modulo nbchildren
-	int r = random() % tree->nbchildren;
+	int r = rand() % tree->nbchildren;
 	
 	//on lance la recursion sur l'enfant choisi au hassard
 	if (tree->nbchildren != 0)
@@ -111,14 +112,14 @@ void find_adj (Nnom *tree ,char* word)
 {
 	//condition d'arret: lorsque qu'on a plus de fils et par consequent que end = 0;
 	//on peut refaire un random modulo 2 pour avoir 0 ou 1 pour savoir si on continu ou on s'arrete la pour le mot
-	if (*tree == NULL)
+	if (tree == NULL)
 	{
 		return;
 	}
 
 	if (tree->adj->end && tree->nbchildren != 0)
 	{
-		if (random()%2)
+		if (rand()%2)
 		{
 			mystrcat(word, tree->adj->lettre);
 			return;
@@ -126,7 +127,7 @@ void find_adj (Nnom *tree ,char* word)
 	}
 
 	//creation d'un random modulo nbchildren
-	int r = random() % tree->nbchildren;
+	int r = rand() % tree->nbchildren;
 	
 	//on lance la recursion sur l'enfant choisi au hassard
 	if (tree->nbchildren != 0)
@@ -140,14 +141,14 @@ void find_adv (Nnom *tree ,char* word)
 {
 	//condition d'arret: lorsque qu'on a plus de fils et par consequent que end = 0;
 	//on peut refaire un random modulo 2 pour avoir 0 ou 1 pour savoir si on continu ou on s'arrete la pour le mot
-	if (*tree == NULL)
+	if (tree == NULL)
 	{
 		return;
 	}
 
 	if (tree->adv->end && tree->nbchildren != 0)
 	{
-		if (random()%2)
+		if (rand()%2)
 		{
 			mystrcat(word, tree->adv->lettre);
 			return;
@@ -155,7 +156,7 @@ void find_adv (Nnom *tree ,char* word)
 	}
 
 	//creation d'un random modulo nbchildren
-	int r = random() % tree->nbchildren;
+	int r = rand() % tree->nbchildren;
 	
 	//on lance la recursion sur l'enfant choisi au hassard
 	if (tree->nbchildren != 0)

@@ -1,7 +1,7 @@
 # Generateur Automatique de Phrases a Partir d'un Dictionnaire
 _(juste en dessous des badges sympatiques à placer)_
 
-[![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)  [![forthebadge](http://forthebadge.com/images/badges/powered-by-electricity.svg)](http://forthebadge.com)
+[![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)  [![forthebadge](http://forthebadge.com/images/badges/powered-by-DraGonKill25.svg)](http://forthebadge.com)
 
 L’objectif de ce projet est de créer un programme qui génère automatiquement des
 phrases grammaticalement et (dans la mesure du possible) orthographiquement correctes,

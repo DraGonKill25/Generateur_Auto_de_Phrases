@@ -1,7 +1,8 @@
 # Generateur Automatique de Phrases a Partir d'un Dictionnaire
 _(juste en dessous des badges sympatiques à placer)_
 
-[![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)  [![forthebadge](http://forthebadge.com/images/badges/powered-by-DraGonKill25.svg)](http://forthebadge.com)
+[![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/ctrl-c-ctrl-v.svg)](https://forthebadge.com)
 
 L’objectif de ce projet est de créer un programme qui génère automatiquement des
 phrases grammaticalement et (dans la mesure du possible) orthographiquement correctes,
@@ -10,14 +11,14 @@ exquis" inventé par l'école surréaliste en 1925.
 
 ## Pour commencer
 
-Entrez ici les instructions pour bien débuter avec votre projet...
+Ne pas se fier a ce qu'on nous dit en cours xD
 
 ### Pré-requis
 
-Ce qu'il est requis pour commencer avec votre projet...
+Desinstaler CLion de ces mort et prendre VIM ou Sublim Text 3
 
-- Programme 1
-- Programme 2
+- sudo apt-get install vim
+- avoir gcc
 - etc...
 
 ### Installation

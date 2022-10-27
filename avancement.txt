@@ -1,0 +1,15 @@
+Fonction de traitement du fichier texte
+3 variables temporaires : forme fléchie, forme de base, type
+une fois ce traitement effectué, passer au traitement du type si plusieurs formes 
+fléchies
+Faire des fonctions de traitement pour le type VERBE NOM ADJ ADV PRE FDB:
+ces fonctions vont permettre la création des arbres
+Détection du \n -> traitement de la ligne finie
+Fonction de comparaison entre la forme fléchie et la forme de base !
+Stocker le nombre de caratere different entre temp1 et temp2
+Une fois la forme de base créée, mettre à jour le nombre de formes fléchies et l'ajouter dans la liste chainee
+
+
+Fonction de traitement des paramètres à appeler dans la fonction de traitement du type
+Fonction forme fléchie : construction d'une liste chainee avec le reste de la ff par rapport à la fdb
+Ajout des paramètres ensuite avec les donnees stocker dans temp3.

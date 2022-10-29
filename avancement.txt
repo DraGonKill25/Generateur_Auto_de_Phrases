@@ -13,3 +13,48 @@ Une fois la forme de base créée, mettre à jour le nombre de formes fléchies 
 Fonction de traitement des paramètres à appeler dans la fonction de traitement du type
 Fonction forme fléchie : construction d'une liste chainee avec le reste de la ff par rapport à la fdb
 Ajout des paramètres ensuite avec les donnees stocker dans temp3.
+
+
+
+
+29/10/2022 (tous)
+	__cration des .h definitif
+		1 root de 4 arbres:
+			-VB 	-> pointeur vers le premier niveau donc les premieres lettre de chaque mot
+				--> si fin de mot alors
+					-ff 	-> pointeur vers toutes mes formes flechies en liste chainee avec un indice de decalage
+			-NOM
+
+			-ADJ
+			
+			-ADV
+	
+
+	__fonction template pour la recup de forme de base (ETAPE 1)
+		recup aleatoire d'une forme de base
+	
+
+	__fonction template pour creer une forme flechie accordee (ETAPE 2)
+		recup organiser selon le genre et le nombre du nom d'une forme flechie approprie
+
+
+
+
+Ce qui reste a faire pour les vacances ?
+TIM:
+	-fct pour lire dans le fichier
+		et gestion des diffents cas : ->vb ->nom ->adj ->adv
+
+NATHAN:
+	-fct de traitement de cration des differents arbres
+		-creation de tout les arbres selon les type a partir de temp1/2/3
+			->meme fonction jusqu'a ce que une lettre change
+			->aller dans la forme de base si elle existe sinon la creer
+			->stocker la forme flechit dans la liste chainer
+-
+ADAM:
+	-adaptation des fonctions pour tout les types
+	-recherche de mot
+	-recherche de forme de base
+
+reunion le jeudi 3 Novembre 14h

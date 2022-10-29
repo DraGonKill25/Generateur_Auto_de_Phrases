@@ -125,10 +125,10 @@ Cette arbre contient les quatres structure pour les verbes, adj, adv et nom
 
 typedef struct TREE
 {
-    VB *verbes;
-    ADJ *adjectifs;
-    ADV *adverbes;
-    NOM *noms;
+    VB *verbes[];
+    ADJ *adjectifs[];
+    ADV *adverbes[];
+    NOM *noms[];
 };
 
 #endif

@@ -7,6 +7,7 @@ _(juste en dessous des badges sympatiques à placer)_
 [![forthebadge](https://forthebadge.com/images/badges/powered-by-black-magic.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/uses-git.svg)](https://forthebadge.com)
 [![forthebadge](https://forthebadge.com/images/badges/works-on-my-machine.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/you-didnt-ask-for-this.svg)](https://forthebadge.com)
 
 L’objectif de ce projet est de créer un programme qui génère automatiquement des
 phrases grammaticalement et (dans la mesure du possible) orthographiquement correctes,

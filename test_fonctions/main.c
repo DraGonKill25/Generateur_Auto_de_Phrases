@@ -41,130 +41,131 @@ pour recup chaque type de mot
 ensuite on print la phrase
 */
 
-
-
-
-
-
-void find_nom (Nnom *tree ,char* word)
+VB Trouver_Verbe(VB noeud, char *str_to_return)
 {
-	//condition d'arret: lorsque qu'on a plus de fils et par consequent que end = 0;
-	//on peut refaire un random modulo 2 pour avoir 0 ou 1 pour savoir si on continu ou on s'arrete la pour le mot
-	if (tree == NULL)
+	//parcours de notre arbre jusqu'a touve end == 1
+	if (!noeud)
 	{
-		return;
+		return EXIT_FAILURE;
 	}
-
-	if (tree->nom->end && tree->nbchildren != 0)
-	{
-		if (rand()%2)
-		{
-			mystrcat(word, tree->nom->lettre);
-			return;
-		}
-	}
-
-	//copy de la lettre dans le string word
-	mystrcat(word, tree->nom->lettre);
-
-	//creation d'un random modulo nbchildren
-	int r = rand() % tree->nbchildren;
 	
-	//on lance la recursion sur l'enfant choisi au hassard
-	if (tree->nbchildren != 0)
+	mystrcat(str_to_return, noeud->lettre);		
+	
+	if(noeud->end)
 	{
-		return find_nom(tree->children[r], word);
+		return noeud;
 	}
-	return;
+
+	int aleatoire = rand() % noeud->nbenfant;
+	return Trouver_Verbe(noeud->child[aleatoire], str_to_return);
 }
 
 
-void find_vb (Nnom *tree ,char* word)
-{
-	//condition d'arret: lorsque qu'on a plus de fils et par consequent que end = 0;
-	//on peut refaire un random modulo 2 pour avoir 0 ou 1 pour savoir si on continu ou on s'arrete la pour le mot
-	if (tree == NULL)
-	{
-		return;
-	}
 
-	if (tree->Vb->end && tree->nbchildren != 0)
+char* mystrff(char *s1, char *s2, int diff)
+{
+	int i=0, len1=0, len2=0, j=0;
+	char *toreturn = NULL;
+	int total;
+	len1 = mystrlen(s1);
+	len2 = mystrlen(s2);
+
+	if (diff < 0)
 	{
-		if (rand()%2)
+		total = (len1 + len2 + diff + 1/*pour le \0*/);
+		toreturn = malloc(total * sizeof(char))
+
+		while (i < total)
 		{
-			mystrcat(word, tree->vb->lettre);
-			return;
+			if (i < (len1-diff))
+			{
+				*(toreturn + i) = *(len1 + i);
+			}
+			else
+			{
+				*(toreturn + i) = *(len2 + j);
+				j++;
+			}
+
+			i++;
+		}
+	}
+	
+	if (diff > 0)
+	{
+		total = (len1 + len2 + 1/*pour le \0*/);
+		toreturn = malloc(total * sizeof(char))
+		while (i < total)
+		{
+			if (i < len1)
+			{
+				*(toreturn + i) = *(len1 + i);
+			}
+			else
+			{
+				*(toreturn + i) = *(len2 + j);
+				j++;
+			}
+
+			i++;
 		}
 	}
 
-	//creation d'un random modulo nbchildren
-	int r = rand() % tree->nbchildren;
-	
-	//on lance la recursion sur l'enfant choisi au hassard
-	if (tree->nbchildren != 0)
-	{
-		return find_vb(tree->children[r], word);
-	}
-	return;
+	return toreturn
 }
 
-void find_adj (Nnom *tree ,char* word)
+
+
+
+char* Trouver_FFVB(VB noeud, char *fdb, NOM n)
 {
-	//condition d'arret: lorsque qu'on a plus de fils et par consequent que end = 0;
-	//on peut refaire un random modulo 2 pour avoir 0 ou 1 pour savoir si on continu ou on s'arrete la pour le mot
-	if (tree == NULL)
-	{
-		return;
-	}
-
-	if (tree->adj->end && tree->nbchildren != 0)
-	{
-		if (rand()%2)
-		{
-			mystrcat(word, tree->adj->lettre);
-			return;
-		}
-	}
-
-	//creation d'un random modulo nbchildren
-	int r = rand() % tree->nbchildren;
+	char *toreturn; //str qui ca contenir ma forme flechie complete
+	FF_VB *temp = noeud->ff;
 	
-	//on lance la recursion sur l'enfant choisi au hassard
-	if (tree->nbchildren != 0)
+	while (temp != NULL)
 	{
-		return find_adj(tree->children[r], word);
+		if (temp->genre == n->genre)
+		{
+			if (temp->nombre == n->nombre)
+			{
+					toreturn = mystrff(fdb, temp->ff, temp->diff);
+					break;
+			}
+		}
+
+		temp = temp->next;
 	}
-	return;
+
+	return toreturn;
 }
 
-void find_adv (Nnom *tree ,char* word)
-{
-	//condition d'arret: lorsque qu'on a plus de fils et par consequent que end = 0;
-	//on peut refaire un random modulo 2 pour avoir 0 ou 1 pour savoir si on continu ou on s'arrete la pour le mot
-	if (tree == NULL)
-	{
-		return;
-	}
 
-	if (tree->adv->end && tree->nbchildren != 0)
-	{
-		if (rand()%2)
-		{
-			mystrcat(word, tree->adv->lettre);
-			return;
-		}
-	}
 
-	//creation d'un random modulo nbchildren
-	int r = rand() % tree->nbchildren;
-	
-	//on lance la recursion sur l'enfant choisi au hassard
-	if (tree->nbchildren != 0)
-	{
-		return find_adv(tree->children[r], word);
-	}
-	return;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

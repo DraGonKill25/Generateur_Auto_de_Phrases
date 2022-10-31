@@ -14,7 +14,7 @@ typedef struct ADV
 {  
     char *lettre;
     int nbenfant;     //nombre d'enfant donc de lettre suivante
-    struct VB *child[]; //toutes les enfants donc lettre suivant
+    struct ADV *child[]; //toutes les enfants donc lettre suivant
     int end;            // est == 1 quand fin de forme de base
 }
 
@@ -99,7 +99,7 @@ typedef struct FF_VB
     char *conjugaison;
     char *nombre;
     char *genre;
-    FF_ADJ *next;
+    FF_VB *next;
 };
 
 //pour stocker le nombre de forme de base

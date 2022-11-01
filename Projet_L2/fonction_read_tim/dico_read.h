@@ -2,9 +2,14 @@
 // Created by TIM on 01/11/2022.
 //
 
-#ifndef GENERATEUR_AUTO_DE_PHRASES_DICO_READ_H
-#define GENERATEUR_AUTO_DE_PHRASES_DICO_READ_H
+#ifndef TEST_READ_TIM_DICO_READ_H
+#define TEST_READ_TIM_DICO_READ_H
 
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <math.h>
 
 
 /*
@@ -139,5 +144,6 @@ typedef struct TREE
 
  */
 
+void dico_read(char *dico);
 
-#endif //GENERATEUR_AUTO_DE_PHRASES_DICO_READ_H
+#endif //TEST_READ_TIM_DICO_READ_H

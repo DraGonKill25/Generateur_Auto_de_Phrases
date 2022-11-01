@@ -24,10 +24,13 @@ void mystrcat(char *str1, char *str2)
 	/* Calculating length of first string */
 	len1 = mystrlen(str1);
 	/*on ajoute la place du nouveau caratere + on ajoute la place du '/0'*/
-	realloc(str1, (len1 + 1 + 1) * sizeof(char))
+	realloc(str1, (len1 + 1 + 1) * sizeof(char));
 	/*on ajoute le nouveau caractere dans la string*/
-	*(str1 + i) = str2;
+
+    *(str1 + i) = str2;
+
 	/*on place le '\0' a la fin de la string*/
+
 	*(str1 + i + 1)='\0';
 }
 
@@ -42,10 +45,11 @@ ensuite on print la phrase
 Vb Trouver_Verbe(Vb noeud, char *str_to_return)
 {
 	//parcours de notre arbre jusqu'a touve end == 1
-	if (!noeud)
+    //pb de compatibilite
+	/*if (!noeud)
 	{
 		return EXIT_FAILURE;
-	}
+	}*/
 	
 	mystrcat(str_to_return, noeud.lettre);
 	

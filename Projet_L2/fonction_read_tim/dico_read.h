@@ -1,5 +1,11 @@
-#ifndef PROJET_L2_DICO_NODE_H
-#define PROJET_L2_DICO_NODE_H
+//
+// Created by TIM on 01/11/2022.
+//
+
+#ifndef GENERATEUR_AUTO_DE_PHRASES_DICO_READ_H
+#define GENERATEUR_AUTO_DE_PHRASES_DICO_READ_H
+
+
 
 /*
 =====================================================================================
@@ -101,7 +107,6 @@ typedef struct FF_VB
 
 //pour stocker le nombre de forme de base
 //ainsi qu'un pointeur vers la liste chainee des formes de base
-
 typedef struct VB
 {
     char *lettre;
@@ -126,7 +131,7 @@ Cette arbre contient les quatres structure pour les verbes, adj, adv et nom
 typedef struct TREE
 {
     int test;
-    //struct VB *verbes[];
+    struct VB *verbes[];
     struct ADJ *adjectifs[];
     struct ADV *adverbes[];
     struct NOM *noms[];
@@ -134,4 +139,5 @@ typedef struct TREE
 
  */
 
-#endif
+
+#endif //GENERATEUR_AUTO_DE_PHRASES_DICO_READ_H

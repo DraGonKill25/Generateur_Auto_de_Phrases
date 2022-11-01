@@ -5,8 +5,6 @@
 #include <time.h>
 #include <assert.h>
 #include <string.h>
-#include "dico_node.h"
-
 #include "helper.h"
 
 
@@ -41,7 +39,7 @@ pour recup chaque type de mot
 ensuite on print la phrase
 */
 
-VB Trouver_Verbe(VB noeud, char *str_to_return)
+Vb Trouver_Verbe(Vb noeud, char *str_to_return)
 {
 	//parcours de notre arbre jusqu'a touve end == 1
 	if (!noeud)
@@ -49,15 +47,15 @@ VB Trouver_Verbe(VB noeud, char *str_to_return)
 		return EXIT_FAILURE;
 	}
 	
-	mystrcat(str_to_return, noeud->lettre);		
+	mystrcat(str_to_return, noeud.lettre);
 	
-	if(noeud->end)
+	if(noeud.end)
 	{
 		return noeud;
 	}
 
-	int aleatoire = rand() % noeud->nbenfant;
-	return Trouver_Verbe(noeud->child[aleatoire], str_to_return);
+	int aleatoire = rand() % noeud.nbenfant;
+	return Trouver_Verbe(*noeud.child[aleatoire], str_to_return);
 }
 
 
@@ -73,17 +71,17 @@ char* mystrff(char *s1, char *s2, int diff)
 	if (diff < 0)
 	{
 		total = (len1 + len2 + diff + 1/*pour le \0*/);
-		toreturn = malloc(total * sizeof(char))
+		toreturn = malloc(total * sizeof(char));
 
 		while (i < total)
 		{
 			if (i < (len1-diff))
 			{
-				*(toreturn + i) = *(len1 + i);
+				*(toreturn + i) = (len1 + i);
 			}
 			else
 			{
-				*(toreturn + i) = *(len2 + j);
+				*(toreturn + i) = (len2 + j);
 				j++;
 			}
 
@@ -94,16 +92,16 @@ char* mystrff(char *s1, char *s2, int diff)
 	if (diff > 0)
 	{
 		total = (len1 + len2 + 1/*pour le \0*/);
-		toreturn = malloc(total * sizeof(char))
+		toreturn = malloc(total * sizeof(char));
 		while (i < total)
 		{
 			if (i < len1)
 			{
-				*(toreturn + i) = *(len1 + i);
+				*(toreturn + i) = (len1 + i);
 			}
 			else
 			{
-				*(toreturn + i) = *(len2 + j);
+				*(toreturn + i) = (len2 + j);
 				j++;
 			}
 
@@ -111,22 +109,22 @@ char* mystrff(char *s1, char *s2, int diff)
 		}
 	}
 
-	return toreturn
+	return toreturn;
 }
 
 
 
 
-char* Trouver_FFVB(VB noeud, char *fdb, NOM n)
+char* Trouver_FFVB(Vb noeud, char *fdb, Nom n)
 {
 	char *toreturn; //str qui ca contenir ma forme flechie complete
-	FF_VB *temp = noeud->ff;
+	Fvb *temp = noeud.ff;
 	
 	while (temp != NULL)
 	{
-		if (temp->genre == n->genre)
+		if (temp->genre == n.ff->genre)
 		{
-			if (temp->nombre == n->nombre)
+			if (temp->nombre == n.ff->nombre)
 			{
 					toreturn = mystrff(fdb, temp->ff, temp->diff);
 					break;

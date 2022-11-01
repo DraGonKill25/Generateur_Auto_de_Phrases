@@ -24,9 +24,9 @@ void mystrcat(char *str1, char *str2)
 	/* Calculating length of first string */
 	len1 = mystrlen(str1);
 	/*on ajoute la place du nouveau caratere + on ajoute la place du '/0'*/
-	realloc(str1, (len1 + 1 + 1) * sizeof(char))
+	str1 = realloc(str1, (len1 + 1 + 1) * sizeof(char));
 	/*on ajoute le nouveau caractere dans la string*/
-	*(str1 + i) = str2;
+	*(str1 + i) = *str2;
 	/*on place le '\0' a la fin de la string*/
 	*(str1 + i + 1)='\0';
 }
@@ -39,23 +39,23 @@ pour recup chaque type de mot
 ensuite on print la phrase
 */
 
-Vb Trouver_Verbe(Vb noeud, char *str_to_return)
+Vb* Trouver_Verbe(Vb *noeud, char *str_to_return)
 {
 	//parcours de notre arbre jusqu'a touve end == 1
 	if (!noeud)
 	{
-		return EXIT_FAILURE;
+		return NULL;//EXIT_FAILURE;
 	}
 	
-	mystrcat(str_to_return, noeud.lettre);
+	mystrcat(str_to_return, noeud->lettre);
 	
-	if(noeud.end)
+	if(noeud->end)
 	{
 		return noeud;
 	}
 
-	int aleatoire = rand() % noeud.nbenfant;
-	return Trouver_Verbe(*noeud.child[aleatoire], str_to_return);
+	int aleatoire = rand() % noeud->nbenfant;
+	return Trouver_Verbe(*noeud->child[aleatoire], str_to_return);
 }
 
 
@@ -138,37 +138,16 @@ char* Trouver_FFVB(Vb noeud, char *fdb, Nom n)
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Vb* CreateNodeVB(char lettre, int end)
+{
+	Vb *newnode = malloc (1 * sizeof(struct VB*));
+	newnode->lettre = &lettre;
+	newnode->end = end;
+	newnode->nbenfant = 0;
+	newnode->nbflechit = 0;
+	newnode->ff = NULL;
+	//newnode->child = NULL;
+}
 
 
 
@@ -176,6 +155,15 @@ int main(int argc, char const *argv[])
 {
 	/* code */
 	srand(time(NULL));
+
+	/*
+	Tree t;
+	t.verbes = CreateNodeVB('a', 0);
+	printf("%p", t.verbes);*/
+	Vb **verbes[26];
+	*verbes[0] = CreateNodeVB('a', 0);
+	printf("%c\n", *verbes[0].lettre);
+	printf("toto\n");
 	 
 	return 0;
 }

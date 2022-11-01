@@ -12,7 +12,7 @@ typedef struct ADV
     char *lettre;
     int nbenfant;     //nombre d'enfant donc de lettre suivante
     int end;            // est == 1 quand fin de forme de base
-    struct ADV *child[]; //toutes les enfants donc lettre suivant
+    struct ADV **child[]; //toutes les enfants donc lettre suivant
 }Adv;
 
 
@@ -43,7 +43,7 @@ typedef struct ADJ
     int nbflechie;      // !=0 quand end == 1
     int end;            // est == 1 quand fin de forme de base
     struct FF_ADJ *ff;   // si end==1 alors *ff != NULL
-    struct ADJ *child[]; //toutes les enfants donc lettre suivant
+    struct ADJ **child[]; //toutes les enfants donc lettre suivant
 }Adj;
 
 
@@ -74,7 +74,7 @@ typedef struct NOM
     int nbflechit;      // !=0 quand end == 1
     int end;            // est == 1 quand fin de forme de base
     struct FF_NOM *ff;   // si end==1 alors *ff != NULL
-    struct NOM *child[]; //toutes les enfants donc lettre suivant
+    struct NOM **child[]; //toutes les enfants donc lettre suivant
 }Nom;
 
 
@@ -109,7 +109,7 @@ typedef struct VB
     int nbflechit;      // !=0 quand end == 1
     int end;            // est == 1 quand fin de forme de base
     struct FF_VB *ff;   // si end==1 alors *ff != NULL
-    struct VB *child[]; //toutes les enfants donc lettre suivant
+    struct VB **child[]; //toutes les enfants donc lettre suivant
 }Vb;
 
 
@@ -126,12 +126,11 @@ Cette arbre contient les quatres structure pour les verbes, adj, adv et nom
 typedef struct TREE
 {
     int test;
-    //struct VB *verbes[];
-    struct ADJ *adjectifs[];
-    struct ADV *adverbes[];
-    struct NOM *noms[];
+    struct VB **verbes[];
+    struct ADJ **adjectifs[];
+    struct ADV **adverbes[];
+    struct NOM **noms[];
 }Tree;
-
- */
+*/
 
 #endif

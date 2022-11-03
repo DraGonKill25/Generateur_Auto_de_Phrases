@@ -74,7 +74,10 @@ void dico_read (char *dico)
 
         parametres = malloc(100);
 
+
+        //rajouter un fgetc pour les conditions verbes/noms/adj/adv + var booleene
         while (car != '\n') {
+
 
             car = fgetc(file);
             char c = (char) car;

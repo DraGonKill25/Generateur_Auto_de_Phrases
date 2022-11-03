@@ -57,4 +57,29 @@ ADAM:
 	-recherche de mot
 	-recherche de forme de base
 
+
+
+
+
 reunion le jeudi 3 Novembre 14h
+	-creer un struc root_VB qui va etre la racine de l'arbre
+	-fct creation arbre presque fini (manque cas ou noeud existe deja)
+
+
+
+TIM :
+	rajouter un fgetc pour les conditions verbes/noms/adj/adv + var booleene
+	essayer d'enlever ver/nom au debut des parametres
+	adapte le malloc au nouveau .h
+	regarder la taille du malloc(sizeof(char))
+	max malloc temp1 et temp2 = 40
+
+Adam:
+	modifier toutes les fonctions avec les nouveaux .h
+	faire le Makefile final
+	faire la fonction de diff de temp1 et temp2
+
+NATHAN:
+	essayer de retrouver le .c perdu CLION de merde de ses morts !!!!!!!!!!!!!!!!!!!
+	finaliser la fonction pour creer un arbre
+	faire la separation des types dans temp3 pour les formes flechie

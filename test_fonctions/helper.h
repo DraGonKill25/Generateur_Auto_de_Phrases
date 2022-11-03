@@ -15,6 +15,10 @@ typedef struct ADV
     struct ADV **child; //toutes les enfants donc lettre suivant
 }Adv;
 
+typedef struct ROOT_ADV{
+    int nbenfant;
+    struct ADV **child;
+}RAdv;
 
 
 
@@ -46,6 +50,10 @@ typedef struct ADJ
     struct ADJ **child; //toutes les enfants donc lettre suivant
 }Adj;
 
+typedef struct ROOT_ADJ{
+    int nbenfant;
+    struct ADJ **child;
+}RAdj;
 
 
 
@@ -77,6 +85,10 @@ typedef struct NOM
     struct NOM **child; //toutes les enfants donc lettre suivant
 }Nom;
 
+typedef struct ROOT_NOM{
+    int nbenfant;
+    struct NOM **child;
+}RNom;
 
 
 
@@ -101,7 +113,6 @@ typedef struct FF_VB
 
 //pour stocker le nombre de forme de base
 //ainsi qu'un pointeur vers la liste chainee des formes de base
-
 typedef struct VB
 {
     char lettre;
@@ -112,7 +123,10 @@ typedef struct VB
     struct VB **child; //toutes les enfants donc lettre suivant
 }Vb;
 
-
+typedef struct ROOT_VB{
+    int nbenfant;
+    struct VB **child;
+}RVb;
 
 /*
 ===============================================================================

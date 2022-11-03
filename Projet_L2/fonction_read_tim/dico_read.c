@@ -20,42 +20,44 @@ void dico_read (char *dico)
     /** initialisation de mes variables */
 
     int car = 0;
-    char *forme_flechie = NULL;;
+    char *forme_flechie = NULL;
     char *forme_de_base = NULL;
     char *parametres = NULL;
-    int cpt = 1;
 
     /** boucle pour tout le parcours du fichier */
 
     while(car != EOF) {
 
+        int cpt = 1;
+
         /** premiere detection de tabulation pour la forme flechie */
+
+        forme_flechie = malloc(100);
 
         while (car != '\t') {
 
-            car = fgetc(file);
-            char c = (char) car;
-            forme_flechie = realloc(forme_flechie, cpt * sizeof(char));
-            strncat(forme_flechie, &c, 1);
-            cpt++;
-
             if (car == EOF)
                 break;
+
+            car = fgetc(file);
+            char c = (char) car;
+            strncat(forme_flechie, &c, 1);
+            cpt++;
         }
 
         /**reinitialisation de mes parametres pour relancer la boucle pour la forme de base */
 
         car = '\0';
-
         cpt = 1;
 
         /** deuxieme detection  de tabulation pour la forme de base */
+
+        forme_de_base = malloc(100);
 
         while (car != '\t') {
 
             car = fgetc(file);
             char c = (char) car;
-            forme_de_base = realloc(forme_de_base, cpt * sizeof(char));
             strncat(forme_de_base, &c, 1);
             cpt++;
 
@@ -66,16 +68,19 @@ void dico_read (char *dico)
         /** reinitialisation */
 
         car = '\0';
-
         cpt = 1;
 
         /** detection du retour a la ligne pour mes parametres */
 
+        parametres = malloc(100);
+
+
+        //rajouter un fgetc pour les conditions verbes/noms/adj/adv + var booleene
         while (car != '\n') {
+
 
             car = fgetc(file);
             char c = (char) car;
-            parametres = realloc(parametres, cpt * sizeof(char));
             strncat(parametres, &c, 1);
             cpt++;
 
@@ -83,15 +88,20 @@ void dico_read (char *dico)
                 break;
         }
 
-
         /** tests */
 
-        printf("\n%s\n", forme_flechie);
+        printf("%s\n", forme_flechie);
+        //printf("\n%c\n", forme_flechie[4]);
+        //fflush(stdout);
+        //fflush(stdin);
 
-        printf("\n%s\n", forme_de_base);
+        printf("%s\n", forme_de_base);
+        //fflush(stdout);
+        //fflush(stdin);
 
-        printf("\n%s", parametres);
-
+        printf("%s\n", parametres);
+        //fflush(stdout);
+        //fflush(stdin);
 
 
         /** appelle des fonctions de traitement des parametres ici*/
@@ -110,7 +120,6 @@ void dico_read (char *dico)
 
         free(parametres);
         parametres = NULL;
-        cpt = 1;
 
     }
 

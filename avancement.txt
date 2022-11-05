@@ -77,9 +77,31 @@ TIM :
 Adam:
 	modifier toutes les fonctions avec les nouveaux .h
 	faire le Makefile final
-	faire la fonction de diff de temp1 et temp2
+	faire la fonction de diff de temp1 et temp2	
 
 NATHAN:
 	essayer de retrouver le .c perdu CLION de merde de ses morts !!!!!!!!!!!!!!!!!!!
 	finaliser la fonction pour creer un arbre
 	faire la separation des types dans temp3 pour les formes flechie
+
+
+
+
+
+
+
+
+
+Fonction demander :
+
+	1) lire dans un fichier qu'importe le fichier 											[check]
+	2) decouper le fichier texte et pouvoir utliser les informations decouper 				[check]
+	3) construire les structures sans probleme												[check]
+	4) rechercher un mot dans les formes de base											[check]
+	5) extraire une forme de base au hasard 												[check]
+	6) generer des phrase au hasard															[pas check]
+	7) recherche de mots parmis les formes flechie
+
+
+
+IL FAUDRA RAJOUTER LES FONCTIONS CHAPEAU QUE J'AI PAS ENCORE FAITE POUR POUVOIR BIEN PARTIR DE LA ROUTE ET NOUS ENLEVER LES CAS DE NULL QUI SERVENT THEORIQUEMENT A RIEN POUR L'INSTANT

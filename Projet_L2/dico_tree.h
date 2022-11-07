@@ -15,13 +15,12 @@ Cette arbre contient les quatres structure pour les verbes, adj, adv et nom
 */
 
 
-//Probleme de compilation avec les tableaux dyn, struct à revoir
 typedef struct TREE
 {
-    struct VB **verbes;
-    struct ADJ **adjectifs;
-    struct ADV **adverbes;
-    struct NOM **noms;
+    struct ROOT_VB *verbes;
+    struct ROOT_ADJ *adjectifs;
+    struct ROOT_ADV *adverbes;
+    struct ROOT_NOM *noms;
 }Tree;
 
 

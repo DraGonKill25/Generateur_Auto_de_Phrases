@@ -215,7 +215,7 @@ int Verbe_Present(char *mot, Vb *v)
 	//mais plus de calcule pour rien
 	if (*(mot + pos_mot) == '\0')
 	{
-		return 1
+		return 1;
 	}
 
 	//je suis pas arriver a la fin de ma string donc le mot n'est pas present
@@ -276,7 +276,7 @@ char* Trouver_Verbe_Conj(Vb *noeud, Nom *n)
 
 
 	int aleatoire = rand() % noeud->nbenfant;
-	noeud = noeud = noeud->child[aleatoire]
+	noeud = noeud = noeud->child[aleatoire];
 
 	while (1)
 	{
@@ -290,10 +290,10 @@ char* Trouver_Verbe_Conj(Vb *noeud, Nom *n)
 		//si on arrive sur une fin de forme de base
 		if (noeud->end)
 		{
-			int isconj = Is_Conj_Vb(noeud->ff, n)
+			int isconj = Is_Conj_Vb(noeud->ff, n);
 			if (isconj >= 0)
 			{
-				Fvb *conj_match = flechie_Vb(noeud , isconj) /*la bonne forme flechie*/
+				Fvb *conj_match = flechie_Vb(noeud , isconj); /*la bonne forme flechie*/
 				// on retourne la forme flechie dans une string
 				return mystrff(fdb, conj_match, conj_match->diff);
 			}
@@ -427,7 +427,7 @@ int Nom_Present(char *mot, Nom *v)
 	//mais plus de calcule pour rien
 	if (*(mot + pos_mot) == '\0')
 	{
-		return 1
+		return 1;
 	}
 
 	//je suis pas arriver a la fin de ma string donc le mot n'est pas present
@@ -490,7 +490,7 @@ char* Trouver_Nom_Conj(Nom *noeud, Fnom *n)
 
 
 	int aleatoire = rand() % noeud->nbenfant;
-	noeud = noeud = noeud->child[aleatoire]
+	noeud = noeud = noeud->child[aleatoire];
 
 	while (1)
 	{
@@ -504,10 +504,10 @@ char* Trouver_Nom_Conj(Nom *noeud, Fnom *n)
 		//si on arrive sur une fin de forme de base
 		if (noeud->end)
 		{
-			int isconj = Is_Conj_Nom(noeud->ff, n)
+			int isconj = Is_Conj_Nom(noeud->ff, n);
 			if (isconj >= 0)
 			{
-				Fvb *conj_match = flechie_Nom(noeud , isconj) /*la bonne forme flechie*/
+				Fvb *conj_match = flechie_Nom(noeud , isconj); /*la bonne forme flechie*/
 				// on retourne la forme flechie dans une string
 				return mystrff(fdb, conj_match, conj_match->diff);
 			}
@@ -641,7 +641,7 @@ int Adj_Present(char *mot, Adj *v)
 	//mais plus de calcule pour rien
 	if (*(mot + pos_mot) == '\0')
 	{
-		return 1
+		return 1;
 	}
 
 	//je suis pas arriver a la fin de ma string donc le mot n'est pas present
@@ -705,7 +705,7 @@ char* Trouver_Adj_Conj(Adj *noeud, Fnom *n)
 
 
 	int aleatoire = rand() % noeud->nbenfant;
-	noeud = noeud = noeud->child[aleatoire]
+	noeud = noeud = noeud->child[aleatoire];
 
 	while (1)
 	{
@@ -719,10 +719,10 @@ char* Trouver_Adj_Conj(Adj *noeud, Fnom *n)
 		//si on arrive sur une fin de forme de base
 		if (noeud->end)
 		{
-			int isconj = Is_Conj_Adj(noeud->ff, n)
+			int isconj = Is_Conj_Adj(noeud->ff, n);
 			if (isconj >= 0)
 			{
-				Fvb *conj_match = flechie_Adj(noeud , isconj) /*la bonne forme flechie*/
+				Fvb *conj_match = flechie_Adj(noeud , isconj); /*la bonne forme flechie*/
 				// on retourne la forme flechie dans une string
 				return mystrff(fdb, conj_match, conj_match->diff);
 			}
@@ -854,7 +854,7 @@ int Adv_Present(char *mot, Adv *v)
 	//mais plus de calcule pour rien
 	if (*(mot + pos_mot) == '\0')
 	{
-		return 1
+		return 1;
 	}
 
 	//je suis pas arriver a la fin de ma string donc le mot n'est pas present

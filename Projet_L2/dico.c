@@ -25,67 +25,78 @@ void dico_read (char *dico)
 
         /** allocation de mes strings */
 
-        forme_flechie = malloc(40 * sizeof(char));
-        forme_de_base = malloc(40 * sizeof(char));
-        parametres = malloc(100 * sizeof(char));
-        char *type = malloc(30 * sizeof(char));
+        forme_flechie = malloc(60 * sizeof(char));
+        forme_de_base = malloc(60 * sizeof(char));
+        parametres = malloc(80 * sizeof(char));
+        char *type = malloc(40 * sizeof(char));
 
         /** premiere detection de tabulation pour la forme flechie */
 
-        while (car != '\t') {
-
+        while ((car = fgetc(file))  != '\t') {
             if (car == EOF)
                 break;
-
-            car = fgetc(file);
+            if(car == 32)
+                break;
             char c = (char) car;
             strncat(forme_flechie, &c, 1);
         }
 
         /**reinitialisation de mes parametres pour relancer la boucle pour la forme de base */
 
-        car = '\0';
+        //car = 0;
 
         /** deuxieme detection  de tabulation pour la forme de base */
 
-        while (car != '\t') {
-
-            car = fgetc(file);
-            char c = (char) car;
-            strncat(forme_de_base, &c, 1);
-
+        while ((car = fgetc(file))  != '\t') {
             if (car == EOF)
                 break;
+            if(car == 32)
+                break;
+            char c = (char) car;
+            strncat(forme_de_base, &c, 1);
         }
 
         /** reinitialisation */
 
-        car = '\0';
+        //car = 0;
 
         /** recuperation du type Ver/Nom/Adj/Adv pour un meilleur traitement
          * et pour faciliter l appel de fonction
          */
 
-        while(car != ':')
-        {
-            car = fgetc(file);
+        /*
+        while((car = fgetc(file))  != ':') {
+            if (car == EOF)
+                break;
+            if(car == 32)
+                break;
+            if (car == '\n') {
+                break;
+            }
             char c = (char) car;
             strncat(type, &c, 1);
+            if (strcmp(type, "Pre") == 0){
+                car = '\n';
+                break;
+            }
         }
+        */
 
         /** detection du retour a la ligne pour mes parametres */
 
         while (car != '\n') {
-
+            if (car == 0)
+                break;
             car = fgetc(file);
             char c = (char) car;
-            strncat(parametres, &c, 1);
-
             if (car == EOF)
                 break;
+            strncat(parametres, &c, 1);
         }
 
         /** traitement du type de mot dans le dictionnaire pour l'appel de fonction */
+
+        /***
 
         char *nom = "Nom:";
         char *verbe = "Ver:";
@@ -99,7 +110,7 @@ void dico_read (char *dico)
 
         if(n == 0)
         {
-            /** test */
+            // test
 
             printf("NOM\n");
 
@@ -108,7 +119,7 @@ void dico_read (char *dico)
         }
         if(v == 0)
         {
-            /** test */
+            //test
 
             printf("VERBE\n");
 
@@ -116,7 +127,7 @@ void dico_read (char *dico)
         }
         if(adje == 0)
         {
-            /** test */
+            // test
 
             printf("ADJECTIF\n");
 
@@ -124,24 +135,24 @@ void dico_read (char *dico)
         }
         if(adve == 0)
         {
-            /** test */
+            //test
 
             printf("ADVERBE\n");
 
             //appeller la fonction de traitement pour les adverbes
         }
 
-        /** tests strings */
+        ***/
 
-        printf("%s\n", forme_flechie);
-        printf("%s\n", forme_de_base);
-        printf("%s\n", parametres);
+        // tests strings
 
+        printf("%s || %s || %s\n", forme_flechie, forme_de_base, parametres);
+        fflush(stdout);
+        fflush(stdin);
 
         //printf("\n%c\n", forme_flechie[4]);
         //printf("\n%s\n", type);
-        //fflush(stdout);
-        //fflush(stdin);
+
 
         /** liberation de la memoire allouee */
 

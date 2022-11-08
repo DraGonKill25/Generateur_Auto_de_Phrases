@@ -37,6 +37,7 @@ Fvb* createFvb(char* temp1, char* temp3){
     char *formef = (char*)malloc(sizeof(char));
     formef = temp1;
     llc->ff = formef;
+
     llc->next = NULL;
     return llc;
 }
@@ -84,11 +85,18 @@ RVb insertTreeVb(RVb root, char* temp1, char* temp2, char* temp3){
         }
         if(temp2[i] == '\0'){//On se trouve à la fin
             //fonction pour ajouter dans la llc
-            p_llc = p_node->ff;
-            while(p_llc->next != NULL){//on parcours la LLC
-                p_llc = p_llc->next;
+            if(p_node->end){
+                p_llc = p_node->ff;
+                while(p_llc->next != NULL){//on parcours la LLC
+                    p_llc = p_llc->next;
+                }
+                p_llc->next = createFvb(temp1, temp3);// On créer une nouvelle cellule
             }
-            p_llc->next = createFvb(temp1, temp3);// On créer une nouvelle cellule
+            else{
+                p_node->end = 1;
+                addEndVb(p_node, temp1, temp3)
+            }
+
         }else{//On se trouve dans un noeud (pas à la fin)
             while(temp2[i] != '\0'){
                 createNode(p_node, temp2[i]);

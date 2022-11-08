@@ -107,7 +107,6 @@ char* mystrff(char *s1, char *s2, int diff)
 		}
 	}
 
-
 	//on return la string de la forme flechit
 	return toreturn;
 }
@@ -128,8 +127,7 @@ char* mystrff(char *s1, char *s2, int diff)
 														FONCTION VERBE
 ===============================================================================
 */
-
-Vb* Trouver_Verbe_Aleatoire(Vb *noeud, char **str_to_return)
+Vb* __Verbe_Aleatoire(Vb *noeud, char **str_to_return)
 {
 	//si jamais on rentre avec un arbre vide
 	//ou probleme dans la recursion
@@ -167,11 +165,36 @@ Vb* Trouver_Verbe_Aleatoire(Vb *noeud, char **str_to_return)
 	int aleatoire = rand() % noeud->nbenfant;
 
 	//on lance la recursion sur le bon enfant
-	return Trouver_Verbe_Aleatoire(noeud->child[aleatoire], str_to_return);
+	return __Verbe_Aleatoire(noeud->child[aleatoire], str_to_return);
 }
 
 
-int Verbe_Present(char *mot, Vb *v)
+
+Vb* Verbe_Aleatoire(RVb tree, char **str_to_return)
+{
+	if (!tree)
+	{
+		return NULL;
+	}
+
+
+	int ale = rand() % tree->nbenfant;
+	mystrcat(*str_to_return, &(tree).child[ale]);\
+
+	if (tree.child[ale]->end)
+	{
+		return tree.child[ale];
+	}
+
+	return __Verbe_Aleatoire(tree.child[ale], str_to_return);
+}
+
+
+
+
+
+
+int __Verbe_Present(char *mot, Vb *v)
 {
 	if (!v)
 	{
@@ -223,6 +246,36 @@ int Verbe_Present(char *mot, Vb *v)
 }
 
 
+
+int Verbe_Present(char *mot, RVb tree)
+{
+	if (!mot || *mot="")
+	{
+		return -1;
+	}
+
+	int i = 0;
+	while (i < tree.nbenfant)
+	{
+		if (tree.child[i] == *mot)
+		{
+			break;
+		}
+		i++;
+	}
+
+	if (i == tree.nbenfant)
+	{
+		return 0;
+	}
+
+	return __Verbe_Present(mot, tree.child[i]);
+}
+
+
+
+
+
 int Is_Conj_Vb(Fvb *v, Nom *n)
 {
 	if (!v)
@@ -261,7 +314,7 @@ Fvb flechie_Vb(Fvb *f, int place)
 }
 
 
-char* Trouver_Verbe_Conj(Vb *noeud, Nom *n)
+char* __Trouver_Verbe_Conj(Vb *noeud, Nom *n)
 {
 	//si jamais on rentre avec un arbre vide
 	//ou probleme dans la recursion
@@ -270,13 +323,7 @@ char* Trouver_Verbe_Conj(Vb *noeud, Nom *n)
 		return NULL;//EXIT_FAILURE;
 	}
 
-	Vb *save = noeud;
 	char *fdb = NULL;
-
-
-
-	int aleatoire = rand() % noeud->nbenfant;
-	noeud = noeud = noeud->child[aleatoire];
 
 	while (1)
 	{
@@ -285,25 +332,34 @@ char* Trouver_Verbe_Conj(Vb *noeud, Nom *n)
 
 		//aleatoire du cas general pour savoir ou on se deplace dans notre
 		//matrice d'enfant
-		aleatoire = rand() % noeud->nbenfant;
+		int aleatoire = rand() % noeud->nbenfant;
 		
 		//si on arrive sur une fin de forme de base
 		if (noeud->end)
 		{
-			int isconj = Is_Conj_Vb(noeud->ff, n);
-			if (isconj >= 0)
+			if (noeud->nbenfant != 0)
 			{
-				Fvb *conj_match = flechie_Vb(noeud , isconj); /*la bonne forme flechie*/
-				// on retourne la forme flechie dans une string
-				return mystrff(fdb, conj_match, conj_match->diff);
+				int ale = rand() % 2;
+				if (ale)
+				{
+					continue;
+				}
+				else
+				{
+					int isconj = Is_Conj_Vb(noeud->ff, n);//retourne la place dans la forme flechie
+					if (isconj >= 0)
+					{
+						Fvb *conj_match = flechie_Vb(noeud , isconj); /*la bonne forme flechie*/
+						// on retourne la forme flechie dans une string
+						return mystrff(fdb, conj_match, conj_match->diff);
+					}
+				}
 			}
+			
 			//on verifie qu'il n'y ai pas un enfant qui puisse avoir la bonne conj
 			else if (noeud->nbenfant == 0)
 			{
-				noeud = save;
-				aleatoire = rand() % noeud->nbenfant;
-				free(fdb);
-				fdb = NULL;				
+				return NULL;				
 			}
 			//si un enfant peux avoir la bonne conj
 			else
@@ -315,6 +371,24 @@ char* Trouver_Verbe_Conj(Vb *noeud, Nom *n)
 	} 
 
 	return NULL;
+}
+
+char* Trouver_Verbe_Conj(RVb tree, Nom *n)
+{
+	if (!n)
+	{
+		return NULL;//EXIT_FAILURE;
+	}
+
+	char *result = NULL;
+	int aleatoire = rand() % tree.nbenfant;
+
+	while (!(result = __Trouver_Verbe_Conj(tree.child[aleatoire], n)))//pour le flex
+	{
+		aleatoire = rand() % tree.nbenfant;
+	}
+
+	return result;
 }
 
 

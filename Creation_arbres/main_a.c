@@ -55,18 +55,18 @@ Vb* createNode(Vb* p_node, char lettre){
     return p_node;
 }
 
-RVb insertTreeVb(RVb root, char* temp1, char* temp2, char* temp3){
+void insertTreeVb(RVb *root, char* temp1, char* temp2, char* temp3){
     Vb* p_node = NULL;
     Fvb* p_llc = NULL;
     int i = 0;
 
-    int find = isValInTab(root.child, root.nbenfant, temp2[i]);
+    int find = isValInTab(root->child, root->nbenfant, temp2[i]);
 
     if(find == -1){
-        root.child = realloc(root.child, (root.nbenfant+1)*sizeof(Vb*));
-        root.child[root.nbenfant] = newNode(temp2[i]);
-        root.nbenfant++;
-        p_node = root.child[root.nbenfant-1];
+        root->child = realloc(root->child, (root->nbenfant+1)*sizeof(Vb*));
+        root->child[root->nbenfant] = newNode(temp2[i]);
+        root->nbenfant++;
+        p_node = root->child[root->nbenfant-1];
         i++;
         while(temp2[i] != '\0'){
             createNode(p_node, temp2[i]);
@@ -75,7 +75,7 @@ RVb insertTreeVb(RVb root, char* temp1, char* temp2, char* temp3){
         }
         addEndVb(p_node, temp1, temp3);
     }else{
-        p_node = root.child[find];
+        p_node = root->child[find];
         i++;
         find = isValInTab(p_node->child, p_node->nbenfant, temp2[i]);
         while(find != -1 && temp2[i] != '\0'){
@@ -94,7 +94,7 @@ RVb insertTreeVb(RVb root, char* temp1, char* temp2, char* temp3){
             }
             else{
                 p_node->end = 1;
-                addEndVb(p_node, temp1, temp3)
+                addEndVb(p_node, temp1, temp3);
             }
 
         }else{//On se trouve dans un noeud (pas à la fin)
@@ -106,5 +106,4 @@ RVb insertTreeVb(RVb root, char* temp1, char* temp2, char* temp3){
             addEndVb(p_node, temp1, temp3);
         }
     }
-    return root;
 }

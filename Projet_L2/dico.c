@@ -1,7 +1,8 @@
 #include "dico.h"
 
-void dico_read (char *dico)
+void dico_read (char *dico, RVb *v_tree, RNom *n_tree, RAdj *adj_tree, RAdv *adv_tree)
 {
+
 
     /** Ouverture du fichier dico */
 
@@ -15,6 +16,7 @@ void dico_read (char *dico)
     /** initialisation de mes variables */
 
     int car = 0;
+    int toto = 0;
     char *forme_flechie = NULL;
     char *forme_de_base = NULL;
     char *parametres = NULL;
@@ -23,85 +25,123 @@ void dico_read (char *dico)
 
     while(car != EOF) {
 
-        /** allocation de mes strings */
+        // allocation de mes strings
 
         forme_flechie = malloc(60 * sizeof(char));
         forme_de_base = malloc(60 * sizeof(char));
         parametres = malloc(80 * sizeof(char));
         char *type = malloc(40 * sizeof(char));
 
-        /** premiere detection de tabulation pour la forme flechie */
 
-        while ((car = fgetc(file))  != '\t') {
+        toto = 0;
+
+        // premiere detection de tabulation pour la forme flechie
+
+        car = 0;
+
+        while (1) {
+
+            car = fgetc(file);
+
             if (car == EOF)
                 break;
             if(car == 32)
                 break;
+            if(car == '\t')
+                break;
+
             char c = (char) car;
             strncat(forme_flechie, &c, 1);
         }
 
-        /**reinitialisation de mes parametres pour relancer la boucle pour la forme de base */
 
-        //car = 0;
 
-        /** deuxieme detection  de tabulation pour la forme de base */
 
-        while ((car = fgetc(file))  != '\t') {
+
+        //deuxieme detection de tabulation pour la forme de base
+
+        car = 0;
+
+        while (1) {
+
+            car = fgetc(file);
+
             if (car == EOF)
                 break;
             if(car == 32)
                 break;
+            if(car == '\t')
+                break;
+
             char c = (char) car;
             strncat(forme_de_base, &c, 1);
         }
 
-        /** reinitialisation */
+        // recuperation du type Ver/Nom/Adj/Adv pour un meilleur traitement
+        // et pour faciliter l appel de fonction
 
-        //car = 0;
+        car = 0;
 
-        /** recuperation du type Ver/Nom/Adj/Adv pour un meilleur traitement
-         * et pour faciliter l appel de fonction
-         */
+        while(1) {
 
-        /*
-        while((car = fgetc(file))  != ':') {
-            if (car == EOF)
-                break;
-            if(car == 32)
-                break;
-            if (car == '\n') {
+
+            /*
+            if ((strcmp(type, "Pre") == 0) || (strcmp(type, "Adv") == 0) || (strcmp(type, "Pro") == 0)) {
+                toto = 1;
                 break;
             }
+             */
+
+            car = fgetc(file);
+
+            if (car == EOF)
+                break;
+            if (car == 32)
+                break;
+
+            if (car == '\n'){
+                toto = 1;
+                break;
+            }
+
+            if (car == ':')
+                break;
+
             char c = (char) car;
             strncat(type, &c, 1);
-            if (strcmp(type, "Pre") == 0){
-                car = '\n';
-                break;
-            }
+
         }
-        */
 
-        /** detection du retour a la ligne pour mes parametres */
 
-        while (car != '\n') {
-            if (car == 0)
+
+        // detection du retour a la ligne pour mes parametres
+
+        car = 0;
+
+        while (1) {
+            if(toto == 1)
                 break;
+
             car = fgetc(file);
-            char c = (char) car;
+
             if (car == EOF)
                 break;
+            if(car == '\n')
+                break;
+
+
+            char c = (char) car;
             strncat(parametres, &c, 1);
         }
 
-        /** traitement du type de mot dans le dictionnaire pour l'appel de fonction */
 
-        /***
+        // traitement du type de mot dans le dictionnaire pour l'appel de fonction
 
-        char *nom = "Nom:";
-        char *verbe = "Ver:";
-        char *adj = "Adj:";
-        char *adv = "Adv:";
+
+        char *nom = "Nom";
+        char *verbe = "Ver";
+        char *adj = "Adj";
+        char *adv = "Adv";
         int n = strcmp(type, nom);
         int v = strcmp(type, verbe);
         int adje = strcmp(type, adj);
@@ -124,6 +164,8 @@ void dico_read (char *dico)
             printf("VERBE\n");
 
             //appeller la fonction de traitement pour les verbes
+
+            insertTreeVb(v_tree, forme_flechie, forme_de_base, parametres);
         }
         if(adje == 0)
         {
@@ -142,10 +184,13 @@ void dico_read (char *dico)
             //appeller la fonction de traitement pour les adverbes
         }
 
-        ***/
+
+
 
         // tests strings
 
+
+        //printf("%s\n",parametres);
         printf("%s || %s || %s\n", forme_flechie, forme_de_base, parametres);
         fflush(stdout);
         fflush(stdin);

@@ -8,7 +8,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "helper.h"
+#include "../test_fonctions/helper.h"
 
 
 int isValInTab(Vb**, int, char);
@@ -23,6 +23,6 @@ void initStructVb(Vb*);
 
 Vb* createNode(Vb *, char);
 
-RVb insertTreeVb(RVb, char*, char*, char*);
+void insertTreeVb(RVb *, char*, char*, char*);
 
 #endif //MAIN_C_MAIN_A_H

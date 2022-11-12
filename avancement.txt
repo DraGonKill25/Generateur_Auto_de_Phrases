@@ -85,6 +85,15 @@ NATHAN:
 	faire la separation des types dans temp3 pour les formes flechie
 
 
+Réu 12/11/2022
+
+TIM : Check -> avancer sur le rapport
+
+ADAM : Compléter recherche de mots (partie 7)
+
+NATHAN : Implémenter la fonction vb pour nom, adj, adv, + calculer la différence entre fdb et ff, isoler la diff dans
+une string, gérer cas temp3.
+
 
 
 
@@ -99,8 +108,8 @@ Fonction demander :
 	3) construire les structures sans probleme												[check]
 	4) rechercher un mot dans les formes de base											[check]
 	5) extraire une forme de base au hasard 												[check]
-	6) generer des phrase au hasard															[pas check]
-	7) recherche de mots parmis les formes flechie
+	6) generer des phrase au hasard															[check]
+	7) recherche de mots parmis les formes flechies
 
 
 

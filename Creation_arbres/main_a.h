@@ -15,13 +15,15 @@ int isValInTab(Vb**, int, char);
 
 Vb* newNode(char);
 
-Fvb* createFvb(char*, char*);
-
-void addEndVb(Vb*, char*, char*);
-
 void initStructVb(Vb*);
 
 Vb* createNode(Vb *, char);
+
+char* Calculer_Diff_et_ff(char *temp1, char *temp2, int *diff);
+
+void addFvb(char* temp1, char* temp2, char* temp3, int i, Fvb *f);
+
+int insertCarac(Fvb *, char*, int);
 
 void insertTreeVb(RVb *, char*, char*, char*);
 

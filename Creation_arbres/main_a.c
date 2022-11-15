@@ -176,6 +176,7 @@ int insertCarac(Fvb *cell, char* carac, int i){
             cell->genre = NULL;
         }
     }
+    return i;
 }
 
 void addFvb(char* temp1, char* temp2, char* temp3, int i, Fvb *f){//SI f est NULL??
@@ -214,14 +215,14 @@ Fvb* createFirstFvb(char* temp1, char* temp2, char* temp3){
     if (*(temp3 + i) != '\0')
     {
         //appelle de la fonction general
-        Add_Fvb(temp1, temp2, temp3, i, newFvb);
+        addFvb(temp1, temp2, temp3, i, newFvb);
     }
 
     //return la premiere cellule et tout les suivantes si elles exitent
     return newFvb;
 }
 
-void insertTreeVb(RVb *root, char* temp1, char* temp2, char* temp3){
+void insertTreeVb(RVb* root, char* temp1, char* temp2, char* temp3){
     Vb* p_node = NULL;
     int i = 0, j = 0;
 
@@ -238,7 +239,7 @@ void insertTreeVb(RVb *root, char* temp1, char* temp2, char* temp3){
             p_node = p_node->child[p_node->nbenfant-1];
             i++;
         }
-        p_node->nbflechit += 1;
+        p_node->nbflechit = 1;
         p_node->end = 1;
         p_node->ff = createFirstFvb(temp1, temp2, temp3);//cas pour augmenter nbfléchie!!
     }else{

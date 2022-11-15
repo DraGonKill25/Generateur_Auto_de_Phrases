@@ -3,15 +3,14 @@
 #include <stddef.h>
 #include <time.h>
 #include <stdlib.h>
-#include "structure.h"
-
+#include "../Projet_L2/dico_node.h"
 
 /*
 ===============================================================================
 						FONCTION VERBE
 ===============================================================================
 */
-Vb* __Verbe_Aleatoire(Vb *noeud, char **str_to_return)
+char* __Verbe_Aleatoire(Vb *noeud, char *str_to_return)
 {
 	//si jamais on rentre avec un arbre vide
 	//ou probleme dans la recursion
@@ -21,7 +20,7 @@ Vb* __Verbe_Aleatoire(Vb *noeud, char **str_to_return)
 	}
 
 	//mon noeud est pas vide donc j'ajoute la lettre dans ma string
-	mystrcat(*str_to_return, &(noeud->lettre));
+	str_to_return = mystrcat(str_to_return, &(noeud->lettre));
 	
 	//je verifie que je suis arrive a une forme de base
 	if(noeud->end)
@@ -36,12 +35,12 @@ Vb* __Verbe_Aleatoire(Vb *noeud, char **str_to_return)
 			//si on s'arrete a ce noeud
 			if (quit)
 			{
-				return noeud;
+				return str_to_return;
 			}
 		}
 		//sinon on retourne tout simplement le noeud
 		else
-			return noeud;
+			return str_to_return;
 	}
 
 	//aleatoire du cas general pour savoir ou on se deplace dans notre
@@ -54,7 +53,7 @@ Vb* __Verbe_Aleatoire(Vb *noeud, char **str_to_return)
 
 
 
-Vb* Verbe_Aleatoire(RVb tree, char **str_to_return)
+char* Verbe_Aleatoire(RVb tree, char *str_to_return)
 {
 	if (!tree.nbenfant)
 	{
@@ -63,16 +62,15 @@ Vb* Verbe_Aleatoire(RVb tree, char **str_to_return)
 
 
 	int ale = rand() % tree.nbenfant;
-	mystrcat(*str_to_return, &(tree.child[ale]->lettre));
+	//str_to_return = mystrcat(str_to_return, &(tree.child[ale]->lettre));
 
 	if (tree.child[ale]->end)
 	{
-		return tree.child[ale];
+		return &tree.child[ale]->lettre;
 	}
 
 	return __Verbe_Aleatoire(tree.child[ale], str_to_return);
 }
-
 
 
 
@@ -85,7 +83,7 @@ int __Verbe_Present(char *mot, Vb *v)
 		return -1;//EXIT_FAILURE;
 	}
 
-	//pcq il y a la root il faudrat rajouter des fonctions chapeau a toutes les autres fonctions
+	//pcq il y a la root il faudra rajouter des fonctions chapeau a toutes les autres fonctions
 	int pos_mot = 1;
 
 	//tant que je suis pas arriver a la fin du mot que je cherche

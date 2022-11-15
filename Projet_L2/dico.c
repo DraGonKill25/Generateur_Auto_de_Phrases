@@ -15,8 +15,8 @@ void dico_read (char *dico, RVb *v_tree, RNom *n_tree, RAdj *adj_tree, RAdv *adv
 
     /** initialisation de mes variables */
 
-    int car = 0;
-    int toto = 0;
+    int car = fgetc(file);
+    int temp;
     char *forme_flechie = NULL;
     char *forme_de_base = NULL;
     char *parametres = NULL;
@@ -26,22 +26,14 @@ void dico_read (char *dico, RVb *v_tree, RNom *n_tree, RAdj *adj_tree, RAdv *adv
     while(car != EOF) {
 
         // allocation de mes strings
-
-        forme_flechie = malloc(60 * sizeof(char));
+        forme_flechie = malloc(60 * sizeof(char *));
         forme_de_base = malloc(60 * sizeof(char));
         parametres = malloc(80 * sizeof(char));
         char *type = malloc(40 * sizeof(char));
-
-
-        toto = 0;
-
+        temp = 0;
         // premiere detection de tabulation pour la forme flechie
 
-        car = 0;
-
         while (1) {
-
-            car = fgetc(file);
 
             if (car == EOF)
                 break;
@@ -52,6 +44,7 @@ void dico_read (char *dico, RVb *v_tree, RNom *n_tree, RAdj *adj_tree, RAdv *adv
 
             char c = (char) car;
             strncat(forme_flechie, &c, 1);
+            car = fgetc(file);
         }
 
 
@@ -59,8 +52,6 @@ void dico_read (char *dico, RVb *v_tree, RNom *n_tree, RAdj *adj_tree, RAdv *adv
 
 
         //deuxieme detection de tabulation pour la forme de base
-
-        car = 0;
 
         while (1) {
 
@@ -72,7 +63,6 @@ void dico_read (char *dico, RVb *v_tree, RNom *n_tree, RAdj *adj_tree, RAdv *adv
                 break;
             if(car == '\t')
                 break;
-
             char c = (char) car;
             strncat(forme_de_base, &c, 1);
         }
@@ -80,17 +70,9 @@ void dico_read (char *dico, RVb *v_tree, RNom *n_tree, RAdj *adj_tree, RAdv *adv
         // recuperation du type Ver/Nom/Adj/Adv pour un meilleur traitement
         // et pour faciliter l appel de fonction
 
-        car = 0;
+
 
         while(1) {
-
-
-            /*
-            if ((strcmp(type, "Pre") == 0) || (strcmp(type, "Adv") == 0) || (strcmp(type, "Pro") == 0)) {
-                toto = 1;
-                break;
-            }
-             */
 
             car = fgetc(file);
 
@@ -98,42 +80,57 @@ void dico_read (char *dico, RVb *v_tree, RNom *n_tree, RAdj *adj_tree, RAdv *adv
                 break;
             if (car == 32)
                 break;
-
-            if (car == '\n'){
-                toto = 1;
+            if (car == '\n' || car == '\r') {
                 break;
             }
-
-            if (car == ':')
+            if (car == ':'){
+                car = fgetc(file);
                 break;
-
+            }
             char c = (char) car;
             strncat(type, &c, 1);
 
         }
 
-
-
-        // detection du retour a la ligne pour mes parametres
-
-        car = 0;
-
-        while (1) {
-            if(toto == 1)
-                break;
-
+        while(car == '\r') {
             car = fgetc(file);
-
             if (car == EOF)
                 break;
-            if(car == '\n')
+        }
+        while(car == '\n')
+        {
+            car = fgetc(file);
+            if (car == EOF)
                 break;
+        }
+        // detection du retour a la ligne pour mes parametres
 
-
+        while (1) {
+            if (car == EOF)
+                break;
+            if (car == 32)
+                break;
+            if (car == '\n' || car == '\r') {
+                break;
+            }
             char c = (char) car;
             strncat(parametres, &c, 1);
+            car = fgetc(file);
         }
 
+        while(1) {
+            if(car == '\r')
+            {
+                car = fgetc(file);
+            }
+            else if(car == '\n')
+                car = fgetc(file);
+            else if (car == EOF)
+                break;
+            else
+                break;
+
+        }
 
         // traitement du type de mot dans le dictionnaire pour l'appel de fonction
 
@@ -157,16 +154,13 @@ void dico_read (char *dico, RVb *v_tree, RNom *n_tree, RAdj *adj_tree, RAdv *adv
             //appeller la fonction de traitement pour les noms
 
         }
+
         if(v == 0)
         {
-            //test
-
             printf("VERBE\n");
-
-            //appeller la fonction de traitement pour les verbes
-
             insertTreeVb(v_tree, forme_flechie, forme_de_base, parametres);
         }
+
         if(adje == 0)
         {
             // test
@@ -191,7 +185,7 @@ void dico_read (char *dico, RVb *v_tree, RNom *n_tree, RAdj *adj_tree, RAdv *adv
 
 
         //printf("%s\n",parametres);
-        printf("%s || %s || %s\n", forme_flechie, forme_de_base, parametres);
+        printf("%s\n%s\n%s\n", forme_flechie, forme_de_base, parametres);
         fflush(stdout);
         fflush(stdin);
 

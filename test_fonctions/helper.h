@@ -10,11 +10,11 @@
 #include <assert.h>
 #include <string.h>
 #include "helper.h"
-#include "structure.h"
+#include "../Projet_L2/dico_node.h"
 
 
 size_t mystrlen(char *s);
-void mystrcat(char *str1, char *str2);
+char* mystrcat(char *str1, char *str2);
 char* mystrff(char *s1, char *s2, int diff);
 
 

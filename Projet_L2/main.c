@@ -160,9 +160,6 @@ int main() {
                         printf("\nL'adverbe %s est-il dans le dico? %s\n", adverbe, res);
                         break;
                     }
-
-
-
                 }
                 break;
             }
@@ -174,11 +171,6 @@ int main() {
         }
 
     }
-
-
-
-
-
 
     /*char *toreturn2 = Nom_Aleatoire(nom, toreturn2);
     char * toreturn3 = malloc(20 * sizeof(char));

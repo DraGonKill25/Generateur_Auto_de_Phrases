@@ -6,6 +6,44 @@
 							FONCTION ADJ
 ===============================================================================
 */
+void __Adj_Aleatoire2(Adj *noeud)
+{
+    //mon noeud est pas vide donc j'ajoute la lettre dans ma string
+    // = mystrcat(str_to_return, &(noeud->lettre));
+    printf("%c", noeud->lettre);
+    //je verifie que je suis arrive a une forme de base
+    if(noeud->end)
+    {
+        //si le noeud est pas une feuille
+        if (noeud->nbenfant != 0)
+        {
+            //alors on regarde si on s'arrete a ce noeud
+            //ou si on continue l'aleatoire
+            int quit = rand() % 20;
+
+            //si on s'arrete a ce noeud
+            if (quit == 18)
+            {
+                return ;
+            }
+        }
+            //sinon on retourne tout simplement le noeud
+        else
+            return ;
+    }
+
+    //aleatoire du cas general pour savoir ou on se deplace dans notre
+    //matrice d'enfant
+    int aleatoire = rand() % noeud->nbenfant;
+
+    //on lance la recursion sur le bon enfant
+    return __Adj_Aleatoire2(noeud->child[aleatoire]);
+}
+
+
+
+
+
 char* __Adj_Aleatoire(Adj *noeud, char *str_to_return)
 {
 	//mon noeud est pas vide donc j'ajoute la lettre dans ma string
@@ -192,7 +230,7 @@ char* __Trouver_Adj_Conj(Adj *noeud, Fnom *n)
 	while (1)
 	{
 		//mon noeud est pas vide donc j'ajoute la lettre dans ma string
-		mystrcat(fdb, &(noeud->lettre));
+		fdb = mystrcat(fdb, &(noeud->lettre));
 
 		//aleatoire du cas general pour savoir ou on se deplace dans notre
 		//matrice d'enfant

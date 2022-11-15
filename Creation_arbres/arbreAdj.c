@@ -103,21 +103,23 @@ int insertCaracAdj(Fadj *cell, char* carac, int i){
     char* genr = (char*)malloc(8*sizeof(char));
 
 
-    while(carac[i] != '+'){
-        genr[j] = carac[i];
+    while(carac[i] != '\0' && carac[i] != ':') {
+        while (carac[i] != '+' && carac[i] != '\0') {
+            genr[j] = carac[i];
+            i++;
+            j++;
+        }
+        genr[j] = '\0';
         i++;
-        j++;
-    }
-    genr[j] = '\0';
-    i++;
-    j=0;
+        j = 0;
 
-    while(carac[i] != '\0' && carac[i] != ':'){
-        nomb[j] = carac[i];
-        i++;
-        j++;
+        while (carac[i] != '\0' && carac[i] != ':') {
+            nomb[j] = carac[i];
+            i++;
+            j++;
+        }
+        nomb[j] = '\0';
     }
-    nomb[j] = '\0';
     if(carac[i] != '\0'){
         i++;
     }

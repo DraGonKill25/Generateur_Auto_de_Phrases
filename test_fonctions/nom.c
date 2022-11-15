@@ -6,6 +6,41 @@
 							FONCTION NOM
 ===============================================================================
 */
+
+void __Nom_Aleatoire2 (Nom *noeud)
+{
+
+    //mon noeud est pas vide donc j'ajoute la lettre dans ma string
+    printf("%c", noeud->lettre);
+
+    //je verifie que je suis arrive a une forme de base
+    if(noeud->end)
+    {
+        //si le noeud est pas une feuille
+        if (noeud->nbenfant != 0)
+        {
+            //alors on regarde si on s'arrete a ce noeud
+            //ou si on continue l'aleatoire
+            int quit = rand() % 20;
+
+            //si on s'arrete a ce noeud
+            if (quit == 18)
+            {
+                return ;
+            }
+        }
+            //sinon on retourne tout simplement le noeud
+        else
+            return ;
+    }
+
+    //aleatoire du cas general pour savoir ou on se deplace dans notre
+    //matrice d'enfant
+    int aleatoire = rand() % noeud->nbenfant;
+
+    //on lance la recursion sur le bon enfant
+    return __Nom_Aleatoire2(noeud->child[aleatoire]);
+}
 char* __Nom_Aleatoire(Nom *noeud, char *str_to_return)
 {
 	//si jamais on rentre avec un arbre vide
@@ -67,7 +102,6 @@ char* Nom_Aleatoire(RNom tree, char *str_to_return)
 
 	return __Nom_Aleatoire(tree.child[ale], str_to_return);
 }
-
 
 
 int __Nom_Present(char *mot, Nom *n)

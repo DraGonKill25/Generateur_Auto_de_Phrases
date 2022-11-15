@@ -28,14 +28,35 @@ int main() {
 
     //creation des arbres a partir du dico en txt
     dico_read("../Projet_L2/TreeExample/dictionnaire.txt", &vb, &nom, &adj, &adv);
-    char *toreturn =  Verbe_Aleatoire(vb,toreturn);
-    //char *toreturn2 = Nom_Aleatoire(nom, toreturn2);
-    //char * toreturn3 = Adj_Aleatoire(adj, toreturn3);
-    //char * toreturn4 = Adv_Aleatoire(adv, toreturn4);
+    __Nom_Aleatoire2(nom.child[rand() % nom.nbenfant]);
+    printf(" ");
+    __Adj_Aleatoire2(adj.child[rand() % adj.nbenfant]);
+    printf(" ");
+    __Verbe_Aleatoire2(vb.child[rand() % vb.nbenfant]);
+    printf(" ");
+    __Nom_Aleatoire2(nom.child[rand() % nom.nbenfant]);
+    printf(" ");
+    printf("\n\n");
+
+    __Nom_Aleatoire2(nom.child[rand() % nom.nbenfant]);
+    printf(" qui ");
+    __Verbe_Aleatoire2(vb.child[rand() % vb.nbenfant]);
+    printf(" ");
+    __Verbe_Aleatoire2(vb.child[rand() % vb.nbenfant]);
+    printf(" ");
+    __Nom_Aleatoire2(nom.child[rand() % nom.nbenfant]);
+    printf(" ");
+    __Adj_Aleatoire2(adj.child[rand() % adj.nbenfant]);
+    printf("\n");
+
+    /*char *toreturn2 = Nom_Aleatoire(nom, toreturn2);
+    char * toreturn3 = malloc(20 * sizeof(char));
+    toreturn3 = Adj_Aleatoire(adj, toreturn3);
+    char * toreturn4 = Adv_Aleatoire(adv, toreturn4);
 
     printf("%s\n", toreturn);
-    //printf("%s\n", toreturn2);
-    //printf("%s\n", toreturn3);
-    //printf("%s\n", toreturn4);
+    printf("%s\n", toreturn2);
+    printf("%s\n", toreturn3);
+    printf("%s\n", toreturn4);*/
     return 0;
 }

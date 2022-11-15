@@ -15,6 +15,6 @@ void initStructAdv(Adv*);
 
 Adv* createNodeAdv(Adv *p_node, char lettre);
 
-void insertTreeAdv(RAdv *, char*, char*);
+void insertTreeAdv(RAdv *, char*);
 
 #endif

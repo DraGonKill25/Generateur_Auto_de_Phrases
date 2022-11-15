@@ -26,11 +26,12 @@ void dico_read (char *dico, RVb *v_tree, RNom *n_tree, RAdj *adj_tree, RAdv *adv
 
     while(car != EOF) {
 
+
         // allocation de mes strings
-        forme_flechie = (char *) malloc(60 * sizeof(char *));
-        forme_de_base = (char *) malloc(60 * sizeof(char *));
-        parametres = (char *) malloc(80 * sizeof(char ));
-        type = (char *) malloc(40 * sizeof(char));
+        forme_flechie = (char *) calloc(60, sizeof(char *));
+        forme_de_base = (char *) calloc(60, sizeof(char *));
+        parametres = (char *) calloc(80, sizeof(char *));
+        type = (char *) calloc(40, sizeof(char *));
         temp = 0;
         // premiere detection de tabulation pour la forme flechie
 
@@ -170,7 +171,7 @@ void dico_read (char *dico, RVb *v_tree, RNom *n_tree, RAdj *adj_tree, RAdv *adv
             //printf("ADJECTIF\n");
 
             //appeller la fonction de traitement pour les adjectifs
-            //insertTreeAdj(adj_tree, forme_flechie, forme_de_base, parametres);
+            insertTreeAdj(adj_tree, forme_flechie, forme_de_base, parametres);
         }
 
         if(adve == 0)
@@ -180,17 +181,19 @@ void dico_read (char *dico, RVb *v_tree, RNom *n_tree, RAdj *adj_tree, RAdv *adv
             //printf("ADVERBE\n");
 
             //appeller la fonction de traitement pour les adverbes
-            //insertTreeAdv(adv_tree, forme_de_base, parametres);
+            insertTreeAdv(adv_tree, forme_de_base);
         }
 
         // tests strings
 
         //printf("%s\n",parametres);
+
         /*
         printf("%s\n%s\n%s\n", forme_flechie, forme_de_base, parametres);
         fflush(stdout);
         fflush(stdin);
          */
+
 
         //printf("\n%c\n", forme_flechie[4]);
         //printf("\n%s\n", type);

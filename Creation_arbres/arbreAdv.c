@@ -38,7 +38,7 @@ Adv* createNodeAdv(Adv* p_node, char lettre){
     return p_node;
 }
 
-void insertTreeAdv(RAdv* root, char* temp1, char* temp2){
+void insertTreeAdv(RAdv* root, char* temp2){
     Adv* p_node = NULL;
     int i = 0, j = 0;
 

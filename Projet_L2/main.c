@@ -4,6 +4,9 @@
 #include "../test_fonctions/vb.h"
 
 int main() {
+
+    srand((unsigned )time(NULL));
+
     RVb vb;
     RNom nom;
     RAdj adj;

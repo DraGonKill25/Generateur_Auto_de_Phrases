@@ -1,21 +1,6 @@
-//
-// Created by natha on 03/11/2022.
-//
-
 #include "arbreVb.h"
 
-size_t mystrlen(char *s)
-{
-    if (!s)
-        return 0;
-
-    size_t i = 0;
-    while (*(s+i) != '\0')
-        i++;
-    return i;
-}
-
-int isValInTab(Vb** tab, int length, char flettre){
+int isValInTabVb(Vb** tab, int length, char flettre){
     if(tab == NULL){
         return -1;
     }
@@ -36,21 +21,21 @@ void initStructVb(Vb* node){
     node->child = NULL;
 }
 
-Vb* newNode(char lettre){
+Vb* newNodeVb(char lettre){
     Vb *node = (Vb*)malloc(sizeof(Vb));
     node->lettre = lettre;
     initStructVb(node);
     return node;
 }
 
-Vb* createNode(Vb* p_node, char lettre){
+Vb* createNodeVb(Vb* p_node, char lettre){
     p_node->nbenfant +=1;
     p_node->child = realloc(p_node->child, p_node->nbenfant*sizeof(Vb*));
-    p_node->child[p_node->nbenfant-1] = newNode(lettre);
+    p_node->child[p_node->nbenfant-1] = newNodeVb(lettre);
     return p_node;
 }
 
-char* Calculer_Diff_et_ff(char *temp1, char *temp2, int *diff)
+char* Calculer_Diff_et_ffVb(char *temp1, char *temp2, int *diff)
 {
     int i = 0;
     int j = 0;
@@ -111,7 +96,7 @@ char* Calculer_Diff_et_ff(char *temp1, char *temp2, int *diff)
     }
 }
 
-int insertCarac(Fvb *cell, char* carac, int i){
+int insertCaracVb(Fvb *cell, char* carac, int i){
     int j=0, pass=0;
 
     char* per = (char*)malloc(8*sizeof(char));
@@ -201,9 +186,9 @@ void addFvb(char* temp1, char* temp2, char* temp3, int i, Fvb *f){//SI f est NUL
     }
 
     Fvb *newFvb = malloc(1*sizeof(Fvb));
-    newFvb->ff = Calculer_Diff_et_ff(temp1, temp2, &(newFvb->diff));
+    newFvb->ff = Calculer_Diff_et_ffVb(temp1, temp2, &(newFvb->diff));
     //Fonction pour carac
-    i = insertCarac(newFvb, temp3, i);
+    i = insertCaracVb(newFvb, temp3, i);
 
     newFvb->next = NULL;
     f->next = newFvb;
@@ -215,11 +200,11 @@ Fvb* createFirstFvb(char* temp1, char* temp2, char* temp3){
     //creation de la premiere cellule
     Fvb *newFvb = malloc(1 * sizeof(Fvb));
     //parametre de ff ET diff
-    newFvb->ff = Calculer_Diff_et_ff(temp1, temp2, &(newFvb->diff));
+    newFvb->ff = Calculer_Diff_et_ffVb(temp1, temp2, &(newFvb->diff));
     int i = 0;
     /*Tout les whiles pour la gestion de newFvb->...*/
     /*maybe faire une fonction pcq ca va etre long*/
-    i = insertCarac(newFvb, temp3, i);
+    i = insertCaracVb(newFvb, temp3, i);
 
     newFvb->next = NULL;
     //si temp3 a plus que 1 parametre
@@ -237,16 +222,16 @@ void insertTreeVb(RVb* root, char* temp1, char* temp2, char* temp3){
     Vb* p_node = NULL;
     int i = 0, j = 0;
 
-    int find = isValInTab(root->child, root->nbenfant, temp2[i]);
+    int find = isValInTabVb(root->child, root->nbenfant, temp2[i]);
 
     if(find == -1){
         root->child = realloc(root->child, (root->nbenfant+1)*sizeof(Vb*));
-        root->child[root->nbenfant] = newNode(temp2[i]);
+        root->child[root->nbenfant] = newNodeVb(temp2[i]);
         root->nbenfant++;
         p_node = root->child[root->nbenfant-1];
         i++;
         while(temp2[i] != '\0'){
-            createNode(p_node, temp2[i]);
+            createNodeVb(p_node, temp2[i]);
             p_node = p_node->child[p_node->nbenfant-1];
             i++;
         }
@@ -256,11 +241,11 @@ void insertTreeVb(RVb* root, char* temp1, char* temp2, char* temp3){
     }else{
         p_node = root->child[find];
         i++;
-        find = isValInTab(p_node->child, p_node->nbenfant, temp2[i]);
+        find = isValInTabVb(p_node->child, p_node->nbenfant, temp2[i]);
         while(find != -1 && temp2[i] != '\0'){
             p_node = p_node->child[find];
             i++;
-            find = isValInTab(p_node->child, p_node->nbenfant, temp2[i]);
+            find = isValInTabVb(p_node->child, p_node->nbenfant, temp2[i]);
         }
         if(temp2[i] == '\0'){//On se trouve à la fin
             //fonction pour ajouter dans la llc
@@ -275,7 +260,7 @@ void insertTreeVb(RVb* root, char* temp1, char* temp2, char* temp3){
 
         }else{//On se trouve dans un noeud (pas à la fin)
             while(temp2[i] != '\0'){
-                createNode(p_node, temp2[i]);
+                createNodeVb(p_node, temp2[i]);
                 p_node = p_node->child[p_node->nbenfant-1];
                 i++;
             }

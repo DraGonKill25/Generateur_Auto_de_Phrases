@@ -1,7 +1,9 @@
 #include "dico.h"
-#include "dico_tree.h"
-#include "../test_fonctions/helper.h"
 #include "../test_fonctions/vb.h"
+#include "../test_fonctions/nom.h"
+#include "../test_fonctions/adj.h"
+#include "../test_fonctions/adv.h"
+
 
 int main() {
 
@@ -25,9 +27,15 @@ int main() {
     adv.child = NULL;
 
     //creation des arbres a partir du dico en txt
-    dico_read("../Projet_L2/TreeExample/dico_test.txt", &vb, &nom, &adj, &adv);
-    char *toreturn = Verbe_Aleatoire(vb,toreturn);
+    dico_read("../Projet_L2/TreeExample/dictionnaire.txt", &vb, &nom, &adj, &adv);
+    char *toreturn =  Verbe_Aleatoire(vb,toreturn);
+    //char *toreturn2 = Nom_Aleatoire(nom, toreturn2);
+    //char * toreturn3 = Adj_Aleatoire(adj, toreturn3);
+    //char * toreturn4 = Adv_Aleatoire(adv, toreturn4);
 
-    printf("\n%s", toreturn);
+    printf("%s\n", toreturn);
+    //printf("%s\n", toreturn2);
+    //printf("%s\n", toreturn3);
+    //printf("%s\n", toreturn4);
     return 0;
 }

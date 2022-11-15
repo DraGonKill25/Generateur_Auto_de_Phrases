@@ -9,7 +9,6 @@
 #include <time.h>
 #include <assert.h>
 #include <string.h>
-#include "helper.h"
 #include "../Projet_L2/dico_node.h"
 
 

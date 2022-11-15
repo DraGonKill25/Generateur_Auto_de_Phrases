@@ -1,23 +1,20 @@
-//
-// Created by natha on 15/11/2022.
-//
-
-#ifndef MAIN_A_H_ARBREADV_H
-#define MAIN_A_H_ARBREADV_H
+#ifndef CREATION_ARBRES_ARBREADV_H
+#define CREATION_ARBRES_ARBREADV_H
 
 #include <stdlib.h>
 #include <stdio.h>
 #include "../Projet_L2/dico_node.h"
+#include "helper.h"
 
 
-int isValInTab(Adv**, int, char);
+int isValInTabAdv(Adv **tab, int length, char flettre);
 
-Adv* newNode(char);
+Adv* newNodeAdv(char);
 
 void initStructAdv(Adv*);
 
-Adv* createNode(Adv *, char);
+Adv* createNodeAdv(Adv *p_node, char lettre);
 
-void insertTreeAdv(RAdv *, char*, char*, char*);
+void insertTreeAdv(RAdv *, char*, char*);
 
-#endif //MAIN_A_H_ARBREADV_H
+#endif

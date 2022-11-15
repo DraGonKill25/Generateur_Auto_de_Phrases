@@ -20,18 +20,20 @@ void dico_read (char *dico, RVb *v_tree, RNom *n_tree, RAdj *adj_tree, RAdv *adv
     char *forme_flechie = NULL;
     char *forme_de_base = NULL;
     char *parametres = NULL;
+    char * type = NULL;
 
     /** boucle pour tout le parcours du fichier */
 
     while(car != EOF) {
 
         // allocation de mes strings
-        forme_flechie = malloc(60 * sizeof(char *));
-        forme_de_base = malloc(60 * sizeof(char));
-        parametres = malloc(80 * sizeof(char));
-        char *type = malloc(40 * sizeof(char));
+        forme_flechie = (char *) malloc(60 * sizeof(char *));
+        forme_de_base = (char *) malloc(60 * sizeof(char *));
+        parametres = (char *) malloc(80 * sizeof(char ));
+        type = (char *) malloc(40 * sizeof(char));
         temp = 0;
         // premiere detection de tabulation pour la forme flechie
+
 
         while (1) {
 
@@ -43,13 +45,9 @@ void dico_read (char *dico, RVb *v_tree, RNom *n_tree, RAdj *adj_tree, RAdv *adv
                 break;
 
             char c = (char) car;
-            strncat(forme_flechie, &c, 1);
+            forme_flechie = mystrcat(forme_flechie, &c);
             car = fgetc(file);
         }
-
-
-
-
 
         //deuxieme detection de tabulation pour la forme de base
 
@@ -69,8 +67,6 @@ void dico_read (char *dico, RVb *v_tree, RNom *n_tree, RAdj *adj_tree, RAdv *adv
 
         // recuperation du type Ver/Nom/Adj/Adv pour un meilleur traitement
         // et pour faciliter l appel de fonction
-
-
 
         while(1) {
 
@@ -92,20 +88,28 @@ void dico_read (char *dico, RVb *v_tree, RNom *n_tree, RAdj *adj_tree, RAdv *adv
 
         }
 
-        while(car == '\r') {
-            car = fgetc(file);
+        while(1) {
+            if(car == '\r')
+            {
+                car = fgetc(file);
+            }
+            if(car == '\n') {
+                temp = 1;
+                car = fgetc(file);
+            }
+            if(car == '\t')
+                car = fgetc(file);
             if (car == EOF)
                 break;
-        }
-        while(car == '\n')
-        {
-            car = fgetc(file);
-            if (car == EOF)
+            else
                 break;
+
         }
         // detection du retour a la ligne pour mes parametres
 
         while (1) {
+            if(temp == 1)
+                break;
             if (car == EOF)
                 break;
             if (car == 32)
@@ -134,7 +138,6 @@ void dico_read (char *dico, RVb *v_tree, RNom *n_tree, RAdj *adj_tree, RAdv *adv
 
         // traitement du type de mot dans le dictionnaire pour l'appel de fonction
 
-
         char *nom = "Nom";
         char *verbe = "Ver";
         char *adj = "Adj";
@@ -144,20 +147,19 @@ void dico_read (char *dico, RVb *v_tree, RNom *n_tree, RAdj *adj_tree, RAdv *adv
         int adje = strcmp(type, adj);
         int adve = strcmp(type, adv);
 
-
         if(n == 0)
         {
             // test
 
-            printf("NOM\n");
+            //printf("NOM\n");
 
             //appeller la fonction de traitement pour les noms
-
+            insertTreeNom(n_tree, forme_flechie, forme_de_base, parametres);
         }
 
         if(v == 0)
         {
-            printf("VERBE\n");
+            //printf("VERBE\n");
             insertTreeVb(v_tree, forme_flechie, forme_de_base, parametres);
         }
 
@@ -165,33 +167,33 @@ void dico_read (char *dico, RVb *v_tree, RNom *n_tree, RAdj *adj_tree, RAdv *adv
         {
             // test
 
-            printf("ADJECTIF\n");
+            //printf("ADJECTIF\n");
 
             //appeller la fonction de traitement pour les adjectifs
+            //insertTreeAdj(adj_tree, forme_flechie, forme_de_base, parametres);
         }
+
         if(adve == 0)
         {
             //test
 
-            printf("ADVERBE\n");
+            //printf("ADVERBE\n");
 
             //appeller la fonction de traitement pour les adverbes
+            //insertTreeAdv(adv_tree, forme_de_base, parametres);
         }
-
-
-
 
         // tests strings
 
-
         //printf("%s\n",parametres);
+        /*
         printf("%s\n%s\n%s\n", forme_flechie, forme_de_base, parametres);
         fflush(stdout);
         fflush(stdin);
+         */
 
         //printf("\n%c\n", forme_flechie[4]);
         //printf("\n%s\n", type);
-
 
         /** liberation de la memoire allouee */
 

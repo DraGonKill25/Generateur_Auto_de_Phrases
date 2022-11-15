@@ -35,7 +35,7 @@ typedef struct ROOT_ADV{
 //ainsi que les parametres de cette forme
 typedef struct FF_ADJ
 {
-    char *ff;           //string du du decalage entre fdb et ff
+    char *ff;           //string du decalage entre fdb et ff
     int diff;           //decalage entre la fdb et la ff
     char *genre;
     char *nombre;

@@ -1,9 +1,9 @@
-#ifndef ADJ_H
-#define ADJ_H
+#ifndef ADV_H
+#define ADV_H
 
-#include "helper.h"
+#include "../Projet_L2/dico_node.h"
 
-Vb* Adv_Aleatoire(RVb tree, char **str_to_return);
+char* Adv_Aleatoire(RAdv tree, char *str_to_return);
 int Adv_Present(char *mot, RAdv tree);
 
 

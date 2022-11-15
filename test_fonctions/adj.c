@@ -6,10 +6,10 @@
 							FONCTION ADJ
 ===============================================================================
 */
-Adj* __Adj_Aleatoire(Adj *noeud, char **str_to_return)
+char* __Adj_Aleatoire(Adj *noeud, char *str_to_return)
 {
 	//mon noeud est pas vide donc j'ajoute la lettre dans ma string
-	mystrcat(*str_to_return, &(noeud->lettre));
+	str_to_return = mystrcat(str_to_return, &(noeud->lettre));
 	
 	//je verifie que je suis arrive a une forme de base
 	if(noeud->end)
@@ -24,12 +24,12 @@ Adj* __Adj_Aleatoire(Adj *noeud, char **str_to_return)
 			//si on s'arrete a ce noeud
 			if (quit)
 			{
-				return noeud;
+				return str_to_return;
 			}
 		}
 		//sinon on retourne tout simplement le noeud
 		else
-			return noeud;
+			return str_to_return;
 	}
 
 	//aleatoire du cas general pour savoir ou on se deplace dans notre
@@ -41,7 +41,7 @@ Adj* __Adj_Aleatoire(Adj *noeud, char **str_to_return)
 }
 
 
-Adj* Adj_Aleatoire(RAdj tree, char **str_to_return)
+char* Adj_Aleatoire(RAdj tree, char *str_to_return)
 {
 	if (!tree.nbenfant)
 	{
@@ -50,11 +50,11 @@ Adj* Adj_Aleatoire(RAdj tree, char **str_to_return)
 
 
 	int ale = rand() % tree.nbenfant;
-	mystrcat(*str_to_return, &(tree.child[ale]->lettre));
+	//str_to_return = mystrcat(str_to_return, &(tree.child[ale]->lettre));
 
 	if (tree.child[ale]->end)
 	{
-		return tree.child[ale];
+		return &tree.child[ale]->lettre;
 	}
 
 	return __Adj_Aleatoire(tree.child[ale], str_to_return);
@@ -144,22 +144,18 @@ int Is_Conj_Adj(Fadj *a, Fnom *n)
 		return 0;
 	}
 	int pos = 0;
-	
-	/*
-		A Gerer selon comment on fait notre gestion de type
-		mais sinon faire une boucle simple avec un while et un if simple pour
-		check si le type correspond
-	*/
-	while (a != NULL)
-	{
-		if (/* on trouve les memes type */)
-		{
-			return pos;
-		}
 
-		pos++;
-		a = a->next; 
-	}
+    while (a != NULL)
+    {
+        if (strcmp(a->genre, n->genre) == 0)
+        {
+            if (strcmp(a->nombre, n->nombre) == 0)
+                return pos;
+        }
+
+        pos++;
+        a = a->next;
+    }
 	return -1;
 
 }
@@ -170,6 +166,7 @@ Fadj* flechie_Adj(Fadj *f, int place)
 	while (i < place)
 	{
 		f = f->next;
+        i++;
 	}
 	return f;
 }

@@ -1,10 +1,6 @@
-//
-// Created by natha on 15/11/2022.
-//
-
 #include "arbreNom.h"
 
-int isValInTab(Nom** tab, int length, char flettre){
+int isValInTabNom(Nom** tab, int length, char flettre){
     if(tab == NULL){
         return -1;
     }
@@ -25,21 +21,21 @@ void initStructNom(Nom* node){
     node->child = NULL;
 }
 
-Nom* newNode(char lettre){
+Nom* newNodeNom(char lettre){
     Nom *node = (Nom*)malloc(sizeof(Nom));
     node->lettre = lettre;
     initStructNom(node);
     return node;
 }
 
-Nom* createNode(Nom* p_node, char lettre){
+Nom* createNodeNom(Nom* p_node, char lettre){
     p_node->nbenfant +=1;
     p_node->child = realloc(p_node->child, p_node->nbenfant*sizeof(Nom*));
-    p_node->child[p_node->nbenfant-1] = newNode(lettre);
+    p_node->child[p_node->nbenfant-1] = newNodeNom(lettre);
     return p_node;
 }
 
-char* Calculer_Diff_et_ff(char *temp1, char *temp2, int *diff)
+char* Calculer_Diff_et_ffNom(char *temp1, char *temp2, int *diff)
 {
     int i = 0;
     int j = 0;
@@ -142,7 +138,7 @@ void addFnom(char* temp1, char* temp2, char* temp3, int i, Fnom *f){//SI f est N
     }
 
     Fnom *newFnom = malloc(1*sizeof(Fnom));
-    newFnom->ff = Calculer_Diff_et_ff(temp1, temp2, &(newFnom->diff));
+    newFnom->ff = Calculer_Diff_et_ffNom(temp1, temp2, &(newFnom->diff));
     //Fonction pour carac
     i = insertCaracNom(newFnom, temp3, i);
 
@@ -156,7 +152,7 @@ Fnom* createFirstFnom(char* temp1, char* temp2, char* temp3){
     //creation de la premiere cellule
     Fnom *newFnom= malloc(1 * sizeof(Fnom));
     //parametre de ff ET diff
-    newFnom->ff = Calculer_Diff_et_ff(temp1, temp2, &(newFnom->diff));
+    newFnom->ff = Calculer_Diff_et_ffNom(temp1, temp2, &(newFnom->diff));
     int i = 0;
     /*Tout les whiles pour la gestion de newFnom->...*/
     /*maybe faire une fonction pcq ca va etre long*/
@@ -178,16 +174,16 @@ void insertTreeNom(RNom* root, char* temp1, char* temp2, char* temp3){
     Nom* p_node = NULL;
     int i = 0, j = 0;
 
-    int find = isValInTab(root->child, root->nbenfant, temp2[i]);
+    int find = isValInTabNom(root->child, root->nbenfant, temp2[i]);
 
     if(find == -1){
         root->child = realloc(root->child, (root->nbenfant+1)*sizeof(Nom*));
-        root->child[root->nbenfant] = newNode(temp2[i]);
+        root->child[root->nbenfant] = newNodeNom(temp2[i]);
         root->nbenfant++;
         p_node = root->child[root->nbenfant-1];
         i++;
         while(temp2[i] != '\0'){
-            createNode(p_node, temp2[i]);
+            createNodeNom(p_node, temp2[i]);
             p_node = p_node->child[p_node->nbenfant-1];
             i++;
         }
@@ -197,11 +193,11 @@ void insertTreeNom(RNom* root, char* temp1, char* temp2, char* temp3){
     }else{
         p_node = root->child[find];
         i++;
-        find = isValInTab(p_node->child, p_node->nbenfant, temp2[i]);
+        find = isValInTabNom(p_node->child, p_node->nbenfant, temp2[i]);
         while(find != -1 && temp2[i] != '\0'){
             p_node = p_node->child[find];
             i++;
-            find = isValInTab(p_node->child, p_node->nbenfant, temp2[i]);
+            find = isValInTabNom(p_node->child, p_node->nbenfant, temp2[i]);
         }
         if(temp2[i] == '\0'){//On se trouve à la fin
             //fonction pour ajouter dans la llc
@@ -215,7 +211,7 @@ void insertTreeNom(RNom* root, char* temp1, char* temp2, char* temp3){
             }
         }else{//On se trouve dans un noeud (pas à la fin)
             while(temp2[i] != '\0'){
-                createNode(p_node, temp2[i]);
+                createNodeNom(p_node, temp2[i]);
                 p_node = p_node->child[p_node->nbenfant-1];
                 i++;
             }

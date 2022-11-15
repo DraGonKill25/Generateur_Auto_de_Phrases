@@ -6,7 +6,7 @@
 							FONCTION NOM
 ===============================================================================
 */
-Nom* __Nom_Aleatoire(Nom *noeud, char **str_to_return)
+char* __Nom_Aleatoire(Nom *noeud, char *str_to_return)
 {
 	//si jamais on rentre avec un arbre vide
 	//ou probleme dans la recursion
@@ -16,7 +16,7 @@ Nom* __Nom_Aleatoire(Nom *noeud, char **str_to_return)
 	}
 
 	//mon noeud est pas vide donc j'ajoute la lettre dans ma string
-	mystrcat(*str_to_return, &(noeud->lettre));
+	str_to_return = mystrcat(str_to_return, &(noeud->lettre));
 	
 	//je verifie que je suis arrive a une forme de base
 	if(noeud->end)
@@ -31,12 +31,12 @@ Nom* __Nom_Aleatoire(Nom *noeud, char **str_to_return)
 			//si on s'arrete a ce noeud
 			if (quit)
 			{
-				return noeud;
+				return str_to_return;
 			}
 		}
 		//sinon on retourne tout simplement le noeud
 		else
-			return noeud;
+			return str_to_return;
 	}
 
 	//aleatoire du cas general pour savoir ou on se deplace dans notre
@@ -47,20 +47,22 @@ Nom* __Nom_Aleatoire(Nom *noeud, char **str_to_return)
 	return __Nom_Aleatoire(noeud->child[aleatoire], str_to_return);
 }
 
-Nom* Nom_Aleatoire(RNom tree, char **str_to_return)
+char* Nom_Aleatoire(RNom tree, char *str_to_return)
 {
 	if (!tree.nbenfant)
 	{
 		return NULL;
 	}
-
+    str_to_return = NULL;
 
 	int ale = rand() % tree.nbenfant;
-	mystrcat(*str_to_return, &(tree.child[ale]->lettre));
+	//str_to_return = mystrcat(str_to_return, &(tree.child[ale]->lettre));
 
 	if (tree.child[ale]->end)
 	{
-		return tree.child[ale];
+        //int quit = rand() % 2;
+        return &tree.child[ale]->lettre;
+
 	}
 
 	return __Nom_Aleatoire(tree.child[ale], str_to_return);
@@ -154,24 +156,19 @@ int Is_Conj_Nom(Fnom *n1, Fnom *n2)
 		return 0;
 	}
 	int pos = 0;
-	
-	/*
-		A Gerer selon comment on fait notre gestion de type
-		mais sinon faire une boucle simple avec un while et un if simple pour
-		check si le type correspond
-	*/
-	while (n1 != NULL)
-	{
-		if (/* on trouve les memes type */)
-		{
-			return pos;
-		}
 
-		pos++;
-		n1 = n2->next; 
-	}
+    while (n1 != NULL)
+    {
+        if (strcmp(n1->genre, n2->genre) == 0)
+        {
+            if (strcmp(n1->nombre, n2->nombre) == 0)
+                return pos;
+        }
 
-	return -1;
+        pos++;
+        n1 = n1->next;
+    }
+    return -1;
 }
 
 Fnom* flechie_Nom(Fnom *f, int place)
@@ -180,6 +177,7 @@ Fnom* flechie_Nom(Fnom *f, int place)
 	while (i < place)
 	{
 		f = f->next;
+        i++;
 	}
 	return f;
 }
@@ -208,7 +206,7 @@ char* __Trouver_Nom_Conj(Nom *noeud, Fnom *n)
 			int isconj = Is_Conj_Nom(noeud->ff, n);
 			if (isconj >= 0)
 			{
-				Fvb *conj_match = flechie_Nom(noeud->ff, isconj); /*la bonne forme flechie*/
+				Fnom *conj_match = flechie_Nom(noeud->ff, isconj); /*la bonne forme flechie*/
 				// on retourne la forme flechie dans une string
 				return mystrff(fdb, conj_match->ff, conj_match->diff);
 			}

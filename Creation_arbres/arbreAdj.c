@@ -1,10 +1,6 @@
-//
-// Created by natha on 15/11/2022.
-//
-
 #include "arbreAdj.h"
 
-int isValInTab(Adj** tab, int length, char flettre){
+int isValInTabAdj(Adj** tab, int length, char flettre){
     if(tab == NULL){
         return -1;
     }
@@ -25,21 +21,21 @@ void initStructAdj(Adj* node){
     node->child = NULL;
 }
 
-Adj* newNode(char lettre){
+Adj* newNodeAdj(char lettre){
     Adj *node = (Adj*)malloc(sizeof(Adj));
     node->lettre = lettre;
     initStructAdj(node);
     return node;
 }
 
-Adj* createNode(Adj* p_node, char lettre){
+Adj* createNodeAdj(Adj* p_node, char lettre){
     p_node->nbenfant +=1;
     p_node->child = realloc(p_node->child, p_node->nbenfant*sizeof(Adj*));
-    p_node->child[p_node->nbenfant-1] = newNode(lettre);
+    p_node->child[p_node->nbenfant-1] = newNodeAdj(lettre);
     return p_node;
 }
 
-char* Calculer_Diff_et_ff(char *temp1, char *temp2, int *diff)
+char* Calculer_Diff_et_ffAdj(char *temp1, char *temp2, int *diff)
 {
     int i = 0;
     int j = 0;
@@ -142,7 +138,7 @@ void addFadj(char* temp1, char* temp2, char* temp3, int i, Fadj *f){
     }
 
     Fadj *newFadj = malloc(1*sizeof(Fadj));
-    newFadj->ff = Calculer_Diff_et_ff(temp1, temp2, &(newFadj->diff));
+    newFadj->ff = Calculer_Diff_et_ffAdj(temp1, temp2, &(newFadj->diff));
     //Fonction pour carac
     i = insertCaracAdj(newFadj, temp3, i);
 
@@ -156,7 +152,7 @@ Fadj* createFirstFadj(char* temp1, char* temp2, char* temp3){
     //creation de la premiere cellule
     Fadj *newFadj= malloc(1 * sizeof(Fadj));
     //parametre de ff ET diff
-    newFadj->ff = Calculer_Diff_et_ff(temp1, temp2, &(newFadj->diff));
+    newFadj->ff = Calculer_Diff_et_ffAdj(temp1, temp2, &(newFadj->diff));
     int i = 0;
     /*Tout les whiles pour la gestion de newFadj->...*/
     /*maybe faire une fonction pcq ca va etre long*/
@@ -178,16 +174,16 @@ void insertTreeAdj(RAdj* root, char* temp1, char* temp2, char* temp3){
     Adj* p_node = NULL;
     int i = 0, j = 0;
 
-    int find = isValInTab(root->child, root->nbenfant, temp2[i]);
+    int find = isValInTabAdj(root->child, root->nbenfant, temp2[i]);
 
     if(find == -1){
         root->child = realloc(root->child, (root->nbenfant+1)*sizeof(Adj*));
-        root->child[root->nbenfant] = newNode(temp2[i]);
+        root->child[root->nbenfant] = newNodeAdj(temp2[i]);
         root->nbenfant++;
         p_node = root->child[root->nbenfant-1];
         i++;
         while(temp2[i] != '\0'){
-            createNode(p_node, temp2[i]);
+            createNodeAdj(p_node, temp2[i]);
             p_node = p_node->child[p_node->nbenfant-1];
             i++;
         }
@@ -197,11 +193,11 @@ void insertTreeAdj(RAdj* root, char* temp1, char* temp2, char* temp3){
     }else{
         p_node = root->child[find];
         i++;
-        find = isValInTab(p_node->child, p_node->nbenfant, temp2[i]);
+        find = isValInTabAdj(p_node->child, p_node->nbenfant, temp2[i]);
         while(find != -1 && temp2[i] != '\0'){
             p_node = p_node->child[find];
             i++;
-            find = isValInTab(p_node->child, p_node->nbenfant, temp2[i]);
+            find = isValInTabAdj(p_node->child, p_node->nbenfant, temp2[i]);
         }
         if(temp2[i] == '\0'){//On se trouve à la fin
             //fonction pour ajouter dans la llc
@@ -215,7 +211,7 @@ void insertTreeAdj(RAdj* root, char* temp1, char* temp2, char* temp3){
             }
         }else{//On se trouve dans un noeud (pas à la fin)
             while(temp2[i] != '\0'){
-                createNode(p_node, temp2[i]);
+                createNodeAdj(p_node, temp2[i]);
                 p_node = p_node->child[p_node->nbenfant-1];
                 i++;
             }

@@ -7,7 +7,7 @@
 							FONCTION ADV
 ===============================================================================
 */
-Adv* __Adv_Aleatoire(Adv *noeud, char **str_to_return)
+char* __Adv_Aleatoire(Adv *noeud, char *str_to_return)
 {
 	//si jamais on rentre avec un arbre vide
 	//ou probleme dans la recursion
@@ -17,7 +17,7 @@ Adv* __Adv_Aleatoire(Adv *noeud, char **str_to_return)
 	}
 
 	//mon noeud est pas vide donc j'ajoute la lettre dans ma string
-	mystrcat(*str_to_return, &(noeud->lettre));
+	str_to_return = mystrcat(str_to_return, &(noeud->lettre));
 	
 	//je verifie que je suis arrive a une forme de base
 	if(noeud->end)
@@ -32,12 +32,12 @@ Adv* __Adv_Aleatoire(Adv *noeud, char **str_to_return)
 			//si on s'arrete a ce noeud
 			if (quit)
 			{
-				return noeud;
+				return str_to_return;
 			}
 		}
 		//sinon on retourne tout simplement le noeud
 		else
-			return noeud;
+			return str_to_return;
 	}
 
 	//aleatoire du cas general pour savoir ou on se deplace dans notre
@@ -48,7 +48,7 @@ Adv* __Adv_Aleatoire(Adv *noeud, char **str_to_return)
 	return __Adv_Aleatoire(noeud->child[aleatoire], str_to_return);
 }
 
-Vb* Adv_Aleatoire(RVb tree, char **str_to_return)
+char* Adv_Aleatoire(RAdv tree, char *str_to_return)
 {
 	if (!tree.nbenfant)
 	{
@@ -57,14 +57,14 @@ Vb* Adv_Aleatoire(RVb tree, char **str_to_return)
 
 
 	int ale = rand() % tree.nbenfant;
-	mystrcat(*str_to_return, &(tree.child[ale]->lettre));
+	//str_to_return = mystrcat(str_to_return, &(tree.child[ale]->lettre));
 
 	if (tree.child[ale]->end)
 	{
-		return tree.child[ale];
+		return &tree.child[ale]->lettre;
 	}
 
-	return __Verbe_Aleatoire(tree.child[ale], str_to_return);
+	return __Adv_Aleatoire(tree.child[ale], str_to_return);
 }
 
 

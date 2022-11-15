@@ -1,4 +1,9 @@
 #include "helper.h"
+#include "vb.h"
+#include <stddef.h>
+#include <time.h>
+#include <stdlib.h>
+#include "structure.h"
 
 
 /*
@@ -155,7 +160,7 @@ int Verbe_Present(char *mot, RVb tree)
 
 
 
-int Is_Conj_Vb(Fvb *v, Nom *n)
+int Is_Conj_Vb(Fvb *v, Fnom *n)
 {
 	if (!v)
 	{
@@ -163,16 +168,12 @@ int Is_Conj_Vb(Fvb *v, Nom *n)
 	}
 	int pos = 0;
 	
-	/*
-		A Gerer selon comment on fait notre gestion de type
-		mais sinon faire une boucle simple avec un while et un if simple pour
-		check si le type correspond
-	*/
 	while (v != NULL)
 	{
-		if (/* on trouve les memes type */)
+		if (strcmp(v->genre, n->genre) == 0)
 		{
-			return pos;
+			if (strcmp(v->nombre, n->nombre) == 0)
+				return pos;
 		}
 
 		pos++;
@@ -188,12 +189,13 @@ Fvb* flechie_Vb(Fvb *f, int place)
 	while (i < place)
 	{
 		f = f->next;
+		i++;
 	}
 	return f;
 }
 
 
-char* __Trouver_Verbe_Conj(Vb *noeud, Nom *n)
+char* __Trouver_Verbe_Conj(Vb *noeud, Fnom *n)
 {
 	//si jamais on rentre avec un arbre vide
 	//ou probleme dans la recursion
@@ -252,7 +254,7 @@ char* __Trouver_Verbe_Conj(Vb *noeud, Nom *n)
 	return NULL;
 }
 
-char* Trouver_Verbe_Conj(RVb tree, Nom *n)
+char* Trouver_Verbe_Conj(RVb tree, Fnom *n)
 {
 	if (!n)
 	{
@@ -273,6 +275,6 @@ char* Trouver_Verbe_Conj(RVb tree, Nom *n)
 
 /*
 ===============================================================================
-													FIN FONCTION VERBE
+						FIN FONCTION VERBE
 ===============================================================================
 */

@@ -6,6 +6,7 @@
 #include <assert.h>
 #include <string.h>
 #include "helper.h"
+#include "structure.h"
 
 
 
@@ -15,7 +16,7 @@
 ===============================================================================
 */
 
-
+/*
 void Generer_Phrase_Ale(Tree t)
 {
 	char *str_nom1 = NULL;
@@ -32,7 +33,7 @@ void Generer_Phrase_Ale(Tree t)
 	printf("%d %d %d %d", n1->lettre, n2->lettre, j1->lettre, v1->lettre);
 	printf("Modele 1: de la forme nom - adjectif - verbe - nom\n");
 	printf("%s %s %s %s", str_nom1, str_adj, str_vb, str_nom2); 
-}
+}*/
 
 
 
@@ -40,5 +41,6 @@ void Generer_Phrase_Ale(Tree t)
 
 int main()
 {
+	srand(time(NULL));
 	return 0;
 }

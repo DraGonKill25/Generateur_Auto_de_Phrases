@@ -2,7 +2,7 @@
 // Created by natha on 03/11/2022.
 //
 
-#include "main_a.h"
+#include "arbreVb.h"
 
 int isValInTab(Vb** tab, int length, char flettre){
     if(tab == NULL){

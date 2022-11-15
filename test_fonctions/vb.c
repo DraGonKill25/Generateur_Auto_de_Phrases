@@ -149,7 +149,7 @@ int __Verbe_Present(char *mot, Vb *v)
 		//la lettre est trouver donc je me deplace dessus
 		if (stop)
 		{
-			v = v->child[i];
+			v = v->child[i - 1];
 		}
 		//elle n'existe pas dans les enfant donc je break
 		else

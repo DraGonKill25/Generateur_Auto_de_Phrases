@@ -132,7 +132,7 @@ int __Nom_Present(char *mot, Nom *n)
 		//la lettre est trouver donc je me deplace dessus
 		if (stop)
 		{
-			n = n->child[i];
+			n = n->child[i -1];
 		}
 		//elle n'existe pas dans les enfant donc je break
 		else

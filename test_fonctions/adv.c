@@ -137,7 +137,7 @@ int __Adv_Present(char *mot, Adv *adv)
 		//la lettre est trouver donc je me deplace dessus
 		if (stop)
 		{
-			adv = adv->child[i];
+			adv = adv->child[i - 1];
 		}
 		//elle n'existe pas dans les enfant donc je break
 		else

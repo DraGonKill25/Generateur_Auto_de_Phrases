@@ -122,7 +122,7 @@ int __Adj_Present(char *mot, Adj *a)
 		//la lettre est trouver donc je me deplace dessus
 		if (stop)
 		{
-			a = a->child[i];
+			a = a->child[i - 1];
 		}
 		//elle n'existe pas dans les enfant donc je break
 		else

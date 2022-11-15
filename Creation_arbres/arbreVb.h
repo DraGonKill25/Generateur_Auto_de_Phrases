@@ -23,6 +23,8 @@ char* Calculer_Diff_et_ff(char *temp1, char *temp2, int *diff);
 
 void addFvb(char* temp1, char* temp2, char* temp3, int i, Fvb *f);
 
+Fvb* createFirstFvb(char* temp1, char* temp2, char* temp3);
+
 int insertCarac(Fvb *, char*, int);
 
 void insertTreeVb(RVb *, char*, char*, char*);

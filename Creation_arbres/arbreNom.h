@@ -22,7 +22,7 @@ char* Calculer_Diff_et_ff(char *temp1, char *temp2, int *diff);
 
 void addFnom(char* temp1, char* temp2, char* temp3, int i, Fnom *f);
 
-FNom* createFirstFnom(char* temp1, char* temp2, char* temp3);
+Fnom* createFirstFnom(char* temp1, char* temp2, char* temp3);
 
 int insertCaracNom(Fnom *, char*, int);
 

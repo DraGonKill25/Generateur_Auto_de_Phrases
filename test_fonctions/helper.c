@@ -7,6 +7,7 @@
 														FONCTION COMMUNE
 ===============================================================================
 */
+/*
 size_t mystrlen(char *s)
 {
   if (!s)
@@ -16,19 +17,21 @@ size_t mystrlen(char *s)
   while (*(s+i) != '\0')
     i++;
   return i;
-}
+}*/
 
-void mystrcat(char *str1, char *str2)
+char* mystrcat(char *str1, char *str2)
 {
-	int i, len1=0;
+	int len1=0;
 	/* Calculating length of first string */
 	len1 = mystrlen(str1);
 	/*on ajoute la place du nouveau caratere + on ajoute la place du '/0'*/
 	str1 = realloc(str1, (len1 + 1 + 1) * sizeof(char));
 	/*on ajoute le nouveau caractere dans la string*/
-	*(str1 + i) = *str2;
+	*(str1 + len1) = *str2;
 	/*on place le '\0' a la fin de la string*/
-	*(str1 + i + 1)='\0';
+	*(str1 + len1 + 1)='\0';
+
+    return str1;
 }
 
 

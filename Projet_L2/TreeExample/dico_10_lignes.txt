@@ -1,6 +1,6 @@
-deraille	derailler	Ver:IPre+SG+P1:IPre+SG+P3:SPre+SG+P1:SPre+SG+P3:ImPre+SG+P2
-deraille	derailler	Ver:PPas
-deraille	derailler	Ver:PPas+Mas+SG
+
+
+
 stabilimetre	stabilimetre	Nom:Mas+SG
 stabilisaient	stabiliser	Ver:IImp+PL+P3
 stabilisais	stabiliser	Ver:IImp+SG+P1:IImp+SG+P2

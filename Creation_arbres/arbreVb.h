@@ -10,6 +10,7 @@
 #include <stdio.h>
 #include "../test_fonctions/helper.h"
 
+size_t mystrlen(char *s);
 
 int isValInTab(Vb**, int, char);
 

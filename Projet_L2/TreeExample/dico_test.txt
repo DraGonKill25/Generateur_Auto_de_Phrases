@@ -1,0 +1,4 @@
+stabilisant	stabiliser	Ver:PPre
+stabilisames	stabiliser	Ver:IPSim+PL+P1:ImPre+PL+P2:ImPre+PL+P2
+abaissé	abaisser	Ver:PPas+Mas+SG
+comprenez	comprendre	Ver:IPre+PL+P2:ImPre+PL+P2

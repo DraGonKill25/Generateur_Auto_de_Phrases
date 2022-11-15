@@ -4,6 +4,17 @@
 
 #include "arbreVb.h"
 
+size_t mystrlen(char *s)
+{
+    if (!s)
+        return 0;
+
+    size_t i = 0;
+    while (*(s+i) != '\0')
+        i++;
+    return i;
+}
+
 int isValInTab(Vb** tab, int length, char flettre){
     if(tab == NULL){
         return -1;

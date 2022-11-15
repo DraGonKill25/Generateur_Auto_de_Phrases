@@ -48,7 +48,7 @@ typedef struct ADJ
 {
     char lettre;
     int nbenfant;     //nombre d'enfant donc de lettre suivante
-    int nbflechie;      // !=0 quand end == 1
+    int nbflechit;      // !=0 quand end == 1
     int end;            // est == 1 quand fin de forme de base
     struct FF_ADJ *ff;   // si end==1 alors *ff != NULL
     struct ADJ **child; //toutes les enfants donc lettre suivant

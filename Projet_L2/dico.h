@@ -7,7 +7,7 @@
 #include <math.h>
 #include "dico_node.h"
 #include "dico_tree.h"
-#include "helper.h"
+#include "../test_fonctions/helper.h"
 #include "../Creation_arbres/arbreVb.h"
 #include "../Creation_arbres/arbreAdv.h"
 #include "../Creation_arbres/arbreAdj.h"

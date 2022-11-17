@@ -40,7 +40,7 @@ Adv* createNodeAdv(Adv* p_node, char lettre){
 
 void insertTreeAdv(RAdv* root, char* temp2){
     Adv* p_node = NULL;
-    int i = 0, j = 0;
+    int i = 0;
 
     int find = isValInTabAdv(root->child, root->nbenfant, temp2[i]);
 

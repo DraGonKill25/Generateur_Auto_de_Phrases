@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "../Projet_L2/dico_node.h"
-#include "helper.h"
+#include "../test_fonctions/helper.h"
 
 int isValInTabVb(Vb **tab, int length, char flettre);
 

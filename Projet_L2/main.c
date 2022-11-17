@@ -1,11 +1,9 @@
-#include "dico.h"
-#include "../test_fonctions/vb.h"
-#include "../test_fonctions/nom.h"
-#include "../test_fonctions/adj.h"
-#include "../test_fonctions/adv.h"
-#include "stdio.h"
-#include "stdlib.h"
-
+#include "Lecture_fichier/lecture_fichier.h"
+#include "./Fonctionnalites/helper.h"
+#include "./Fonctionnalites/vb.h"
+#include "./Fonctionnalites/nom.h"
+#include "./Fonctionnalites/adj.h"
+#include "./Fonctionnalites/adv.h"
 
 int main() {
 

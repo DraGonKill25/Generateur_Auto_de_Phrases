@@ -1,10 +1,8 @@
 #ifndef CREATION_ARBRES_ARBREADV_H
 #define CREATION_ARBRES_ARBREADV_H
 
-#include <stdlib.h>
-#include <stdio.h>
-#include "../Projet_L2/dico_node.h"
-#include "../test_fonctions/helper.h"
+#include "../Fonctionnalites/helper.h"
+
 
 
 int isValInTabAdv(Adv **tab, int length, char flettre);

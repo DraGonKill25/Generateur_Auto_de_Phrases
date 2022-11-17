@@ -9,7 +9,7 @@
 #include <time.h>
 #include <assert.h>
 #include <string.h>
-#include "../Projet_L2/dico_node.h"
+#include "structures.h"
 
 
 size_t mystrlen(char *s);

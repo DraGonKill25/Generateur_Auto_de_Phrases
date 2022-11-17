@@ -3,7 +3,7 @@
 #include <stddef.h>
 #include <time.h>
 #include <stdlib.h>
-#include "../Projet_L2/dico_node.h"
+#include "structures.h"
 
 /*
 ===============================================================================

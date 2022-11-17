@@ -1,7 +1,7 @@
 #ifndef ADJ_H
 #define ADJ_H
 
-#include "../Projet_L2/dico_node.h"
+#include "helper.h"
 
 void __Adj_Aleatoire2(Adj *noeud);
 char* Adj_Aleatoire(RAdj tree, char *str_to_return);

@@ -1,10 +1,7 @@
 #ifndef CREATION_ARBRE_ARBREADJ_H
 #define CREATION_ARBRE_ARBREADJ_H
 
-#include <stdlib.h>
-#include <stdio.h>
-#include "../Projet_L2/dico_node.h"
-#include "../test_fonctions/helper.h"
+#include "../Fonctionnalites/helper.h"
 
 int isValInTabAdj(Adj **tab, int length, char flettre);
 

@@ -1,7 +1,7 @@
 #ifndef NOM_H
 #define NOM_H
 
-#include "../Projet_L2/dico_node.h"
+#include "helper.h"
 
 void __Nom_Aleatoire2(Nom *);
 char* Nom_Aleatoire(RNom tree, char *str_to_return);

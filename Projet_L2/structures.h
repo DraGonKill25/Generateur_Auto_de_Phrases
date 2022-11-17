@@ -5,6 +5,7 @@
 #ifndef PROJET_L2_DICO_NODE_H
 #define PROJET_L2_DICO_NODE_H
 
+
 /*
 =====================================================================================
                             Structure for ADV

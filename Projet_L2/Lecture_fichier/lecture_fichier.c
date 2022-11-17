@@ -1,4 +1,4 @@
-#include "dico.h"
+#include "lecture_fichier.h"
 
 void dico_read (char *dico, RVb *v_tree, RNom *n_tree, RAdj *adj_tree, RAdv *adv_tree)
 {

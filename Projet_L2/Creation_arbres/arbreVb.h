@@ -1,3 +1,11 @@
+//
+//Projet Générateur automatique de phrases
+//Adam RILI, Timothé DEBORD, Nathan SIMOES
+//
+//Fichier qui a pour role de définir les protoypes des fonctions utilisées dans le fichier arbreVb.c
+//Ces deux fichiers ont pour roles la création de l'arbre des verbes, et l'insertion d'un verbe si cet arbre est déjà
+//créé et que le verbe ne s'y trouves pas.
+
 #ifndef CREATION_ARBRE_ARBREVB_H
 #define CREATION_ARBRE_ARBREVB_H
 

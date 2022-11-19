@@ -9,7 +9,7 @@
 #include <time.h>
 #include <assert.h>
 #include <string.h>
-#include "structures.h"
+#include "../structures.h"
 
 
 size_t mystrlen(char *s);

@@ -39,6 +39,6 @@ void Free_VB(Vb *v)
 	{
 		free(v->ff);
 	}
-	free(v->child);
+	free(v->childd);
 	free(v);
 }

@@ -1,4 +1,5 @@
-#include "Lecture_fichier/lecture_fichier.h"
+#include <time.h>
+#include "./Lecture_fichier/lecture_fichier.h"
 #include "./Fonctionnalites/helper.h"
 #include "./Fonctionnalites/vb.h"
 #include "./Fonctionnalites/nom.h"
@@ -27,7 +28,7 @@ int main() {
     adv.child = NULL;
 
     //creation des arbres a partir du dico en txt
-    dico_read("../Projet_L2/TreeExample/dictionnaire.txt", &vb, &nom, &adj, &adv);
+    dico_read("./TreeExample/dico_10_lignes.txt", &vb, &nom, &adj, &adv);
 
     int choix = 0;
     int choix1 = 0;

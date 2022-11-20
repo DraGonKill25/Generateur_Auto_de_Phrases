@@ -14,6 +14,7 @@
 
 size_t mystrlen(char *s);
 char* mystrcat(char *str1, char *str2);
+int mystrcmp(char*, char*);
 char* mystrff(char *s1, char *s2, int diff);
 
 

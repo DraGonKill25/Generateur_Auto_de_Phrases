@@ -16,63 +16,58 @@ exquis" inventé par l'école surréaliste en 1925.
 
 ## Pour commencer
 
-Ne pas se fier a ce qu'on nous dit en cours xD
+_(Ne pas se fier a ce qu'on nous dit en cours xD)_
+Le projet est normalement terminer
 
 ### Pré-requis
+Avoir ``gcc`` comme compilateur
+- sudo apt-get install gcc
 
-Desinstaler CLion de ces mort et prendre VIM ou Sublim Text 3
+Avoir la commande ``make``
+- sudo apt-get install make
 
-- sudo apt-get install vim
-- avoir gcc
-- etc...
+Ne pas utiliser ``Clion`` de preference car les chemins donnee ne sont pas absolue
+mais relatif. Or ``Clion`` compile du C avec du C++ et ne place pas correctement
+l'executable. L'utiliser reste possible mais il faut changer dans le main le chemin
+du dictionnaire.
+
 
 ### Installation
 
-Les étapes pour installer votre programme....
-
-Dites ce qu'il faut faire...
-
-_exemple_: Executez la commande ``fuck chabchoub`` pour commencer ensuite [...]
-
-
-Ensuite vous pouvez montrer ce que vous obtenez au final...
+Il suffit de clone le repo rien de plus.
 
 ## Démarrage
 
-Dites comment faire pour lancer votre projet
+Une fois le repo clone ce deplacer dans ``ProjetL2/`` et taper make dans un terminal.
+Ceci va lancer le menu du notre programme. IL suffit ensuite de suive les instructions
+afficher.
 
 ## Fabriqué avec
 
 Entrez les programmes/logiciels/ressources que vous avez utilisé pour développer votre projet
 
 _exemples :_
-* [Materialize.css] - Framework CSS (front-end)
+* [GDB] - Le debuggugeur qui sauve la vie
 * [Sublime Text] - Editeur de textes
 * [VIM] - Editeur de textes
+* [CLion] - IDE
 
-## Contributing
-
-Si vous souhaitez contribuer, lisez le fichier [CONTRIBUTING.md] pour savoir comment le faire.
 
 ## Versions
-Listez les versions ici 
 _exemple :_
 **Dernière version stable :** 1.0
 **Dernière version :** 1.0
-Liste des versions : [Cliquer pour afficher](https://github.com/your/project-name/tags)
+Liste des versions : [Cliquer pour afficher](https://github.com/DraGonKill25/Generateur_Auto_de_Phrases/tags)
 _(pour le lien mettez simplement l'URL de votre projets suivi de ``/tags``)_
 
 ## Auteurs
 Listez le(s) auteur(s) du projet ici !
 * **Adam RILI** _alias_ [@outout14](https://github.com/outout14)
 * **Timothee DEBORD** _alias_ [@outout14](https://github.com/outout14)
-* **Nathan** _alias_ [@outout14](https://github.com/outout14)
+* **Nathan SIMOES** _alias_ [@outout14](https://github.com/outout14)
 
-
-Lisez la liste des [contributeurs](https://github.com/your/project/contributors) pour voir qui à aidé au projet !
-
-_(pour le lien mettez simplement l'URL de votre projet suivi de ``/contirubors``)_
 
 ## License
 
-Ce projet est sous licence `@DraGonKill25`` - voir le fichier [LICENSE.md](LICENSE.md) pour plus d'informations
+Ce projet est sous licence ``@DraGonKill25``
+Tout copyright reservee

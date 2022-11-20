@@ -14,9 +14,14 @@ size_t mystrlen(char *s)
         return 0;
 
     size_t i = 0;
+    size_t j = 0;
     while (*(s+i) != '\0')
+    {
+        if (*(s+i)<'a' && *(s+i)>'z')
+            j++;
         i++;
-    return i;
+    }
+    return i - j;
 }
 
 char* mystrcat(char *str1, char *str2)
@@ -36,15 +41,44 @@ char* mystrcat(char *str1, char *str2)
 
 
 
+int mystrcmp(char *s1, char *s2)
+{
+    int i = 0;
+    if (!s1)
+        return 0;
+
+    while(*(s1 + i) != '\0' && *(s2 + i) != '\0' && *(s1 + i) == *(s2 +i))
+        i++;
+
+    if(*(s1 + i) == '\0' && *(s2 + i) == '\0')
+        return 1;    
+    if (!(*(s1 + i) >= 'a' && *(s1 +i) <= 'z'))
+        return 0;
+    return 0;
+      
+}
+
 
 char* mystrff(char *s1, char *s2, int diff)
 {
 
+    if(!s2)
+    {
+        return s1;
+    }
 	int i=0, len1=0, len2=0, j=0;
 	char *toreturn = NULL; //string a retourner avec la forme flechit
 	int total = 0;
 	len1 = mystrlen(s1);
 	len2 = mystrlen(s2);
+    //printf("c'est la| %d||%d\n", diff, -diff > (len1 + len2));
+	if (-diff > (len1 + len2))
+	{
+	    diff = 0;
+	}
+
+	if (diff == 0)
+	    return s1;
 
 	//on differencie 2 cas celui ou la longueur de la chaine toreturn
 	//depend entierement de la forme de base donc diff >= 0
@@ -62,15 +96,15 @@ char* mystrff(char *s1, char *s2, int diff)
 		while (i < total)
 		{
 			//copie du radical commun entre la fdb et la ff
-			if (i < (len1-diff))
+			if (i < (len1+diff))
 			{
-				*(toreturn + i) = (len1 + i);
+				*(toreturn + i) = *(s1 + i);
 			}
 
 			//copie de la ff
 			else
 			{
-				*(toreturn + i) = (len2 + j);
+				*(toreturn + i) = *(s2+ j);
 				j++;
 			}
 
@@ -92,12 +126,12 @@ char* mystrff(char *s1, char *s2, int diff)
 			//on copie la forme de base
 			if (i < len1)
 			{
-				*(toreturn + i) = (len1 + i);
+				*(toreturn + i) = *(s1 + i);
 			}
 			//on ajoute la ff
 			else
 			{
-				*(toreturn + i) = (len2 + j);
+				*(toreturn + i) = *(s2 + j);
 				j++;
 			}
 
@@ -113,6 +147,6 @@ char* mystrff(char *s1, char *s2, int diff)
 
 /*
 ===============================================================================
-												FIN	FONCTION COMMUNE
+						FIN	FONCTION COMMUNE
 ===============================================================================
 */

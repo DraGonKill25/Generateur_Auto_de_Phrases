@@ -4,6 +4,7 @@
 #include "./Fonctionnalites/nom.h"
 #include "./Fonctionnalites/adj.h"
 #include "./Fonctionnalites/adv.h"
+#include "./Free_Fonction/free_memory.h"
 
 int main() {
 
@@ -30,7 +31,7 @@ int main() {
     adv.child = NULL;
 
     //creation des arbres a partir du dico en txt
-    dico_read("../Projet_L2/TreeExample/dictionnaire.txt", &vb, &nom, &adj, &adv);
+    dico_read("./TreeExample/dictionnaire.txt", &vb, &nom, &adj, &adv);
 
     //Initialisation des variables pour les differents switches
     int choix = 0;
@@ -130,38 +131,85 @@ int main() {
                         }
                         case 2 : {
 
-                            while (choix4 != 4) {
+                            while (choix4 != 3) {
                                 printf("Il vous est propose trois modeles de generation differents\n");
                                 printf("Ici vous pourrez choisir de conjuger une phrase generee aleatoirement\n\n");
                                 //printf("Vous pourrez choisir entre differentes conjugaisons proposees\n");
-                                printf("- 1 : Modele 1 conjuge\n- 2 : Modele 2 conjuge\n- 3 : Modele 3 conjuge\n- 4 : Revenir a la Generation\n");
+                                printf("- 1 : Modele 1 conjuge\n- 2 : Modele 2 conjuge\n- 3 : Revenir a la Generation\n");
                                 //printf("- 5 : Choix de la personne pour la phrase conjugee\n");
                                 printf("Votre choix : ");
                                 scanf("%d", &choix4);
                                     switch (choix4) {
                                         //appels des fonctions pour les formes conjugees
                                         case 1 : {
-                                            printf("Modele 1 : ");
+                                            printf("\nModele 1 : ");
+                                            char *nom_ale = malloc(40 * sizeof(char*));
+                                            Fnom *ff_nom = Nom_Aleatoire(nom, nom_ale);
+                                            char *nom_conj = malloc(40 * sizeof(char*));
+                                            Fnom *ff_conj = Trouver_Nom_Conj(nom, ff_nom, nom_conj);      
+                                            ff_conj->ff = ff_conj->ff;
+                                            //ff_conj->lettre = ff_conj->lettre + 1 - 1;
+                                            //printf("%s | %s\n", ff_nom->nombre, nom_ale);
+                                            //printf("%s | %s\n", ff_conj->nombre, nom_conj);
+    
+                                            char *vb_ale = malloc(45 * sizeof(char*));
+                                            Fvb *ff_vb = Trouver_Verbe_Conj(vb, ff_nom, vb_ale);
+                                            ff_vb->ff = ff_vb->ff;
+                                            //ff_vb->lettre = ff_vb->lettre + 1 - 1;
+                                            //printf("%s | %s\n", ff_vb->nombre, vb_ale);
+
+                                            char *adj_ale = malloc(40 * sizeof(char*));
+                                            Fadj *ff_adj = Trouver_Adj_Conj(adj, ff_nom, adj_ale);
+                                            ff_adj->ff = ff_adj->ff;
+                                            //ff_adj->lettre = ff_adj->lettre + 1 - 1;
+                                            //printf("%s | %s\n", ff_adj->nombre, adj_ale);
+                                            
+                                            
+                                            //char *adv_ale = malloc(40 * sizeof(char*));
+                                            //Adv *fdb_adv = Adv_Aleatoire(adv, adv_ale);
+                                            //printf("%c | %s\n", fdb_adv->lettre, adv_ale);             
+                                            
+                                            printf("Le %s %s de maniere %s\n\n", nom_conj, vb_ale, adj_ale);
+                                            free(nom_ale);
+                                            free(nom_conj);
+                                            free(vb_ale);
+                                            free(adj_ale);
                                             break;
                                         }
 
                                         case 2 : {
-                                            printf("Modele 2 : ");
+                                            printf("\nModele 2 : ");
+                                            
+                                            char *nom_ale = malloc(40 * sizeof(char*));
+                                            Fnom *ff_nom = Nom_Aleatoire(nom, nom_ale);
+                                            char *nom_conj = malloc(40 * sizeof(char*));
+                                            Fnom *ff_conj = Trouver_Nom_Conj(nom, ff_nom, nom_conj);      
+                                            ff_conj->ff = ff_conj->ff;
+                                            
+                                            char *adv_ale = malloc(40 * sizeof(char*));
+                                            Adv *fdb_adv = Adv_Aleatoire(adv, adv_ale);
+                                            fdb_adv->lettre = fdb_adv->lettre;
+                                            
+                                            char *vb_ale = malloc(45 * sizeof(char*));
+                                            Fvb *ff_vb = Trouver_Verbe_Conj(vb, ff_nom, vb_ale);
+                                            ff_vb->ff = ff_vb->ff;
+                                            
+                                            printf("%s le %s %s %s\n\n", adv_ale, nom_ale, vb_ale, nom_conj);
+                                            free(nom_conj);
+                                            freee(nom_ale);
+                                            free(vb_ale);
+                                            free(adv_ale);
                                             break;
                                         }
 
                                         case 3 : {
-                                            printf("Modele 3 : ");
                                             break;
                                         }
+                                        
                                         case 4 : {
                                             break;
                                         }
-                                        /*
-                                        case 5 : {
-                                            break;
-                                        }
-                                         */
+                                         
                                     }
                                 }
                             }
@@ -253,15 +301,12 @@ int main() {
         }
 
     }
-
-    /*char *toreturn2 = Nom_Aleatoire(nom, toreturn2);
-    char * toreturn3 = malloc(20 * sizeof(char));
-    toreturn3 = Adj_Aleatoire(adj, toreturn3);
-    char * toreturn4 = Adv_Aleatoire(adv, toreturn4);
-
-    printf("%s\n", toreturn);
-    printf("%s\n", toreturn2);
-    printf("%s\n", toreturn3);
-    printf("%s\n", toreturn4);*/
+    
+    
+    
+    Free_VB(&vb);
+    Free_NOM(&nom);
+    Free_ADJ(&adj);
+    Free_ADV(&adv);
     return 0;
 }

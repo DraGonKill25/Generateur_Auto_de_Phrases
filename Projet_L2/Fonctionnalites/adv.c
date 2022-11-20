@@ -51,7 +51,7 @@ void __Adv_Aleatoire2(Adv *noeud)
 
 
 
-char* __Adv_Aleatoire(Adv *noeud, char *str_to_return)
+Adv* __Adv_Aleatoire(Adv *noeud, char *str_to_return, int i)
 {
 	//si jamais on rentre avec un arbre vide
 	//ou probleme dans la recursion
@@ -61,7 +61,7 @@ char* __Adv_Aleatoire(Adv *noeud, char *str_to_return)
 	}
 
 	//mon noeud est pas vide donc j'ajoute la lettre dans ma string
-	str_to_return = mystrcat(str_to_return, &(noeud->lettre));
+	*(str_to_return + i) = noeud->lettre;
 	
 	//je verifie que je suis arrive a une forme de base
 	if(noeud->end)
@@ -71,28 +71,28 @@ char* __Adv_Aleatoire(Adv *noeud, char *str_to_return)
 		{
 			//alors on regarde si on s'arrete a ce noeud
 			//ou si on continue l'aleatoire
-			int quit = rand() % 2;
+			int quit = rand() % 43;
 
 			//si on s'arrete a ce noeud
-			if (quit)
+			if (quit == 42)
 			{
-				return str_to_return;
+				return noeud;
 			}
 		}
 		//sinon on retourne tout simplement le noeud
 		else
-			return str_to_return;
+			return noeud;
 	}
 
 	//aleatoire du cas general pour savoir ou on se deplace dans notre
 	//matrice d'enfant
 	int aleatoire = rand() % noeud->nbenfant;
-
+    i++;
 	//on lance la recursion sur le bon enfant
-	return __Adv_Aleatoire(noeud->child[aleatoire], str_to_return);
+	return __Adv_Aleatoire(noeud->child[aleatoire], str_to_return, i);
 }
 
-char* Adv_Aleatoire(RAdv tree, char *str_to_return)
+Adv* Adv_Aleatoire(RAdv tree, char *str_to_return)
 {
 	if (!tree.nbenfant)
 	{
@@ -103,12 +103,17 @@ char* Adv_Aleatoire(RAdv tree, char *str_to_return)
 	int ale = rand() % tree.nbenfant;
 	//str_to_return = mystrcat(str_to_return, &(tree.child[ale]->lettre));
 
-	if (tree.child[ale]->end)
+    if (tree.child[ale]->end)
 	{
-		return &tree.child[ale]->lettre;
+        int quit = rand() % 43;
+        if (quit == 42)
+        {
+            
+            return tree.child[ale];
+        }
 	}
 
-	return __Adv_Aleatoire(tree.child[ale], str_to_return);
+	return __Adv_Aleatoire(tree.child[ale], str_to_return, 0);
 }
 
 

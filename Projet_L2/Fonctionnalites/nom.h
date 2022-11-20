@@ -4,9 +4,9 @@
 #include "helper.h"
 
 void __Nom_Aleatoire2(Nom *);
-char* Nom_Aleatoire(RNom tree, char *str_to_return);
+Fnom* Nom_Aleatoire(RNom tree, char *str_to_return);
 int Nom_Present(char *mot, RNom tree);
-char* Trouver_Nom_Conj(RNom tree, Nom *n);
+Fnom* Trouver_Nom_Conj(RNom tree, Fnom *n, char*);
 
 
 

@@ -10,7 +10,7 @@
 
 //Fonction qui prend en paramètres un tableau dynamique de pointeurs, la taille de ce tableau et la lettre que l'on
 //veut trouver
-//Retourne un entier (-1 si l'on a pas trouvé la lettre dans une des chaques noeuds pointés par les cases du tableau
+//Retourne un entier (-1 si l'on a pas trouvé la lettre dans un des chaques noeuds pointés par les cases du tableau
 //sinon l'indice de la case pointant vers le noeud ayant la lettre que l'on cherche)
 //Fonction qui s'occupe de vérifier si une lettre ce trouve bien dans un des noeuds pointé par une des cases du tableau
 //dynamique.
@@ -41,7 +41,7 @@ void initStructVb(Vb* node){
 
 //Fonction qui prend en paramètres une lettre
 //Retourne une node de type Vb
-//Fonction qui créé un nouveau noeud en y insérer la lettre qui lui correspond et qui l'initialise avant de la retourner
+//Fonction qui créé un nouveau noeud en y insérant la lettre qui lui correspond et qui l'initialise avant de la retourner
 Vb* newNodeVb(char lettre){
     Vb *node = (Vb*)malloc(sizeof(Vb));//On alloue dynamiquement un nouveau noeud
     node->lettre = lettre;//On y insère la lettre
@@ -55,7 +55,7 @@ Vb* newNodeVb(char lettre){
 Vb* createNodeVb(Vb* p_node, char lettre){
     p_node->nbenfant +=1;
     p_node->child = realloc(p_node->child, p_node->nbenfant*sizeof(Vb*));
-    p_node->child[p_node->nbenfant-1] = newNodeVb(lettre); //On créer un nouveau noeud qui devient le fils du noeud pointé
+    p_node->child[p_node->nbenfant-1] = newNodeVb(lettre); //Le noeud créé devient le fils du noeud pointé
     return p_node;
 }
 
@@ -118,7 +118,7 @@ char* Calculer_Diff_et_ffVb(char *temp1, char *temp2, int *diff)
             return toreturn;
         }
 
-        else //Si on est arrivé à la fin de la fin de la forme fléchie
+        else //Si on est arrivé à la fin de la forme fléchie
         {
             *diff = -(len2 - len1); //Nombre de caractères de différence à enlever de la forme de base
             return NULL; //Il n'y a donc pas de caractères de différence (on en supprime juste)
@@ -129,7 +129,7 @@ char* Calculer_Diff_et_ffVb(char *temp1, char *temp2, int *diff)
 //Fonction qui prend en paramètres une cellule de formes fléchies, une chaîne de caractères comprenant les caractéristiques
 //de la forme fléchie (temp3) et un entier i (pour la récursivité)
 //Retourne un entier i
-//Fonction qui a pour role d'insérer les caractéristiques d'un forme fléchie dans une cellule de la forme fléchie correspondante
+//Fonction qui a pour role d'insérer les caractéristiques d'une forme fléchie dans une cellule de la forme fléchie correspondante
 int insertCaracVb(Fvb *cell, char* carac, int i){
     int j=0, pass=0;
 
@@ -214,7 +214,7 @@ int insertCaracVb(Fvb *cell, char* carac, int i){
 //Fonction récursive qui ne retourne rien
 //Fonction qui s'occupe de créer une cellule de forme fléchie et qui la relie à une LSC déjà existante, en créer davantages
 //(active la récursion) lorsque temp3 = "temps+nombre+personne:temps+nombre+personne:temps+nombre+personne:..."
-void addFvb(char* temp1, char* temp2, char* temp3, int i, Fvb *f){//SI f est NULL??
+void addFvb(char* temp1, char* temp2, char* temp3, int i, Fvb *f){
     if(temp3[i] == '\0'){//Condition d'arrêt de la récursion (Si l'on a déjà inséré toutes les caractéristiques)
         return;
     }
@@ -244,7 +244,7 @@ Fvb* createFirstFvb(char* temp1, char* temp2, char* temp3){
     //parametre de ff ET diff
     newFvb->ff = Calculer_Diff_et_ffVb(temp1, temp2, &(newFvb->diff));
     int i = 0;
-    //Paramètres des caractères
+    //Paramètres des caractéristiques
     i = insertCaracVb(newFvb, temp3, i);
 
     newFvb->next = NULL;

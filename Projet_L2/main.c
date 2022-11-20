@@ -31,7 +31,7 @@ int main() {
     adv.child = NULL;
 
     //creation des arbres a partir du dico en txt
-    dico_read("../Projet_L2/TreeExample/dictionnaire.txt", &vb, &nom, &adj, &adv);
+    dico_read("./TreeExample/dictionnaire.txt", &vb, &nom, &adj, &adv);
 
     //Initialisation des variables pour les differents switches
     int choix = 0;

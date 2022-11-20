@@ -1,3 +1,11 @@
+//
+//Projet Générateur automatique de phrases
+//Adam RILI, Timothé DEBORD, Nathan SIMOES
+//
+//Fichier qui a pour role de définir les protoypes des fonctions utilisées dans le fichier arbreNom.c
+//Ces deux fichiers ont pour roles la création de l'arbre des noms, et l'insertion d'un nom si cet arbre est déjà
+//créé et que le nom ne s'y trouves pas.
+
 #ifndef CREATION_ARBRES_ARBRENOM_H
 #define CREATION_ARBRES_ARBRENOM_H
 

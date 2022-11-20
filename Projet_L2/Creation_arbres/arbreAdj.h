@@ -1,3 +1,11 @@
+//
+//Projet Générateur automatique de phrases
+//Adam RILI, Timothé DEBORD, Nathan SIMOES
+//
+//Fichier qui a pour role de définir les protoypes des fonctions utilisées dans le fichier arbreAdj.c
+//Ces deux fichiers ont pour roles la création de l'arbre des adjectifs, et l'insertion d'un adjectif si cet arbre est déjà
+//créé et que l'adjectif ne s'y trouves pas.
+
 #ifndef CREATION_ARBRE_ARBREADJ_H
 #define CREATION_ARBRE_ARBREADJ_H
 

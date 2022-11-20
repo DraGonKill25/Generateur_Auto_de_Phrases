@@ -89,6 +89,9 @@ void dico_read (char *dico, RVb *v_tree, RNom *n_tree, RAdj *adj_tree, RAdv *adv
 
         }
 
+        //attention a la syntaxe du document !!! un \r se trouve en fin de ligne
+        //il faut bien le traiter sinon il sera concaténé à une string
+
         while(1) {
             if(car == '\r')
             {

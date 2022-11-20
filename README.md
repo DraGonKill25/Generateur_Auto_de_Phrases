@@ -54,7 +54,7 @@ afficher.
 Liste des versions : [Cliquer pour afficher](https://github.com/DraGonKill25/Generateur_Auto_de_Phrases/tags)
 
 ## Auteurs
-Listez le(s) auteur(s) du projet ici !
+
 * **Adam RILI** _alias_ [@DraGonKill25](https://github.com/DraGonKill25)
 * **Timothee DEBORD** _alias_ [@iTiMaX](https://github.com/iTiMaX)
 * **Nathan SIMOES** _alias_ [@Neith17](https://github.com/Neith17)

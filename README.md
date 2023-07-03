@@ -55,7 +55,7 @@ Liste des versions : [Cliquer pour afficher](https://github.com/DraGonKill25/Gen
 
 ## Auteurs
 	
-* **Adam RILI** _alias_ [@DraGonKill25](https://github.com/DraGonKill25)
+* **A R** _alias_ [@DraGonKill25](https://github.com/DraGonKill25)
 * **Timothee DEBORD** _alias_ [@iTiMaX](https://github.com/iTiMaX)
 * **Nathan SIMOES** _alias_ [@Neith17](https://github.com/Neith17)
 
